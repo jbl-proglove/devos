@@ -4,7 +4,7 @@
     challengeResponseAuthentication = false;
     passwordAuthentication = false;
     forwardX11 = true;
-    permitRootLogin = false;
+    permitRootLogin = "no";
     startWhenNeeded = true;
   };
 }
