@@ -2,7 +2,7 @@
   # TODO read up on how to structure this
   # is it supposed to be a sub-profile of laptop or graphical?
   # if it stays toplevel, what do I HAVE to import?
-  imports = [ ./graphical ];
+  imports = [ ../graphical ];
 
   services.xserver = {
     #  enable = true;
