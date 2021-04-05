@@ -1,18 +1,45 @@
 { pkgs, ... }: {
-  # TODO imports
+  # TODO verify
+  imports = [ ./zsh ./kakoune ./tmux ];
 
-  # TODO needed?
-  # environment.shellAliases = { v = "$EDITOR"; pass = "gopass"; };
+  environment.shellAliases = { v = "$EDITOR"; pass = "gopass"; };
 
   environment.sessionVariables = {
-    # PAGER = "bat";
+    PAGER = "less";
     LESS = "-iFJMRWX -z-4 -x4";
-    # LESSOPEN = "|${pkgs.lesspipe}/bin/lesspipe.sh %s";
+    LESSOPEN = "|${pkgs.lesspipe}/bin/lesspipe.sh %s";
     EDITOR = "vim";
-    # VISUAL = "vim";
+    VISUAL = "vim";
   };
 
   environment.systemPackages = with pkgs; [
-    vim
+    clang
+    file
+    git-crypt
+    gnupg
+    less
+    ncdu
+    gopass
+    tig
+    tokei
+    wget
   ];
+
+  fonts =
+    let
+      nerdfonts = pkgs.nerdfonts.override {
+        fonts = [ "DejaVuSansMono" ];
+      };
+    in
+    {
+      fonts = [ nerdfonts ];
+      fontconfig.defaultFonts.monospace =
+        [ "DejaVu Sans Mono Nerd Font Complete Mono" ];
+    };
+
+  documentation.dev.enable = true;
+
+  programs.thefuck.enable = true;
+  programs.firejail.enable = true;
+  programs.mtr.enable = true;
 }
