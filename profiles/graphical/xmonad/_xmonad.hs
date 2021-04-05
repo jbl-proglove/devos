@@ -51,7 +51,7 @@ main =
 myLayout = smartBorders
   .  mkToggle ( NBFULL ?? EOT)
   . onWorkspace "7:im" ( half ||| Mirror half ||| tiled ||| reflectHoriz tiled )
-  spacingRaw True (Border 0 10 10 10) True (Border 0 10 10 10) True $ tiled ||| reflectHoriz tiled ||| half ||| Mirror half
+  $ tiled ||| reflectHoriz tiled ||| half ||| Mirror half
     where
       tiled     = ResizableTall nmaster delta ratiot []
       half      = ResizableTall nmaster delta ratioh []
