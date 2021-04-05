@@ -12,7 +12,6 @@ in
   setVolume :: String -> X ()
   setVolume options = do
     spawn ("${alsaUtils}/bin/amixer -q set Master " ++ options)
-  -- spawn "${volnoti}"
 
   myAutostart :: X ()
   myAutostart = do
