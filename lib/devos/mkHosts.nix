@@ -8,11 +8,10 @@ let
     "flakes"
     "nix-command"
     "ca-references"
-#    "ca-derivations"
+    #    "ca-derivations"
   ];
 
   modules = {
-    core = "${self}/profiles/core";
     modOverrides = { config, overrideModulesPath, ... }:
       let
         inherit (overrides) modules disabledModules;
@@ -24,7 +23,7 @@ let
           modules;
       };
 
-    global = { config, ... }: {
+    global = { config, pkgs, ... }: {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -32,12 +31,13 @@ let
         extraSpecialArgs = extern.userSpecialArgs // { suites = suites.user; };
         sharedModules = extern.userModules ++ (builtins.attrValues self.homeModules);
       };
+      users.mutableUsers = lib.mkDefault false;
 
       hardware.enableRedistributableFirmware = lib.mkDefault true;
 
       nix.nixPath = [
         "nixpkgs=${nixos}"
-        "nixos-config=${self}/compat/nixos"
+        "nixos-config=${self}/lib/compat/nixos"
         "home-manager=${inputs.home}"
       ];
 
@@ -48,6 +48,8 @@ let
         nixos.flake = nixos;
         override.flake = inputs.override;
       };
+
+      nix.package = pkgs.nixFlakes;
 
       nix.extraOptions = ''
         experimental-features = ${lib.concatStringsSep " "
@@ -61,7 +63,11 @@ let
     # Everything in `./modules/list.nix`.
     flakeModules = { imports = builtins.attrValues self.nixosModules ++ extern.modules; };
 
-    cachix = ../../cachix.nix;
+    cachix = let rootCachix = ../../cachix.nix; in
+      if builtins.pathExists rootCachix
+      then rootCachix
+      else { }
+    ;
   };
 
   specialArgs = extern.specialArgs // { suites = suites.system; };

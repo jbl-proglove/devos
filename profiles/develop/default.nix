@@ -23,6 +23,7 @@
     tig
     tokei
     wget
+    vim
   ];
 
   fonts =

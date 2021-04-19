@@ -2,7 +2,7 @@
 let inherit (lib) fileContents;
 in
 {
-  nix.package = pkgs.nixFlakes;
+  imports = [ ../cachix ];
 
   nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
 
@@ -29,6 +29,7 @@ in
       ripgrep
       skim
       tealdeer
+      usbutils
       utillinux
       whois
     ];
@@ -76,7 +77,7 @@ in
         '';
 
         # fix nixos-option
-        nixos-option = "nixos-option -I nixpkgs=${toString ../../compat}";
+        nixos-option = "nixos-option -I nixpkgs=${toString ../../lib/compat}";
 
         # sudo
         s = ifSudo "sudo -E ";
@@ -144,7 +145,5 @@ in
   };
 
   services.earlyoom.enable = true;
-
-  users.mutableUsers = false;
 
 }
