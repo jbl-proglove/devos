@@ -2,7 +2,7 @@
 {
   imports = [ ../../profiles/ssh ];
 
-  home-manager.users.nixos = { suites, ... }: {
+  home-manager.users.jbl = { suites, ... }: {
     imports = suites.base;
   };
 

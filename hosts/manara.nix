@@ -7,7 +7,8 @@
   i18n.defaultLocale = "de_DE.UTF-8";
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.networkManager.enable = true;
+  networking.wireless.enable;
+  #networking.networkManager.enable = true;
   networking.interfaces.wlp2s0.useDHCP = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];

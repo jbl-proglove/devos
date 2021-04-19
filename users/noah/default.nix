@@ -1,6 +1,6 @@
 { ... }:
 {
-  home-manager.users.nixos = { suites, ... }: {
+  home-manager.users.noah = { suites, ... }: {
     imports = suites.base;
   };
 

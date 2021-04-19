@@ -13,7 +13,7 @@
     privateLaptop = workstation ++ [ laptop users.noah ];
 
     # base suite
-    base = [ users.nixos users.root ];
+    base = [ users.jbl users.root ];
   };
 
   user = with userProfiles; rec {
