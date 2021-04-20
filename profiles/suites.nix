@@ -4,7 +4,7 @@
   system = with profiles; rec {
 
     # basic suite with a graphical frontend and a base setup
-    workstation = [ develop graphical users.jbl ];
+    workstation = [ base develop graphical users.jbl ];
 
     # suite for my work laptop. Most notable is the single-user and more security
     progloveLaptop = workstation ++ [ laptop proglove ]; # todo add proglove related stuff
@@ -13,7 +13,7 @@
     privateLaptop = workstation ++ [ laptop users.noah ];
 
     # base suite
-    base = [ users.jbl users.root ];
+    base = [ core users.jbl users.root ];
   };
 
   user = with userProfiles; rec {

@@ -22,6 +22,7 @@ in
       gptfdisk
       iputils
       jq
+      yq
       manix
       moreutils
       nix-index
