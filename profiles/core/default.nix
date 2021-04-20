@@ -25,6 +25,7 @@ in
       yq
       manix
       moreutils
+      neofetch # bash system information
       nix-index
       nmap
       ripgrep
