@@ -16,7 +16,14 @@
 
   services.picom = {
     enable = true;
-    inactiveOpacity = 0.8;
+    activeOpacity = 0.9;
+    inactiveOpacity = 0.7;
+    # INVESTIGATE pro? con?
+    backend = "glx";
+    fade = true;
+    fadeDelta = 5;
+    shadow = true;
+    shadowOpacity = 0.75;
     settings = {
       "unredir-if-possible" = true;
       "focus-exclude" = "name = 'slock'";

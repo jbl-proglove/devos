@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       env.TERM = "xterm-256color";
-      window.decorations = "full";
+      window.decorations = "none";
       font.size = 9.0;
       cursor.style = "Beam";
 
