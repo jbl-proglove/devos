@@ -16,7 +16,7 @@ in
   myAutostart :: X ()
   myAutostart = do
     spawn "${autostart}"
-    spawn "feh --bg-fill --no-fehbg ${pkgs.adapta-backgrounds}/share/backgrounds/adapta/tri-fadeno.jpg"
+    spawn "feh --bg-fill --no-fehbg /etc/wallpapers/nixos_wallpaper_1.png"
     setWMName "LG3D"
     sendMessage $ SetStruts [] [minBound .. maxBound]
     setDefaultCursor xC_left_ptr

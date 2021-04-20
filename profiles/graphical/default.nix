@@ -35,6 +35,11 @@
     zathura
   ];
 
+  # TODO should this be an overlay? A package? I need to learn stuff...
+  environment.etc = {
+    "wallpapers/nixos_wallpaper_1.png".source = ../../assets/images/nixos_wallpaper_1.png;
+  };
+
   # TODO what does xbanish do?
   services.xbanish.enable = true;
 

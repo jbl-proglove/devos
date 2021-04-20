@@ -11,7 +11,7 @@ pgrep -x xss-lock \
 pgrep -x xbanish \
 || xbanish&!
 
-#${terminal} -e tmux new-session -As $(whoami)&!
+${terminal} -e tmux new-session -As $(whoami)&!
 
 #if ! pgrep -f qutebrowser; then
 #  ${BROWSER} &!
