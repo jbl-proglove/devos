@@ -17,7 +17,10 @@
       nixpkgs-fmt
       qutebrowser
       signal-desktop
-      starship;
+      starship
+      vscode-extensions
+      vscodium
+      ;
 
     haskellPackages = prev.haskellPackages.override {
       overrides = hfinal: hprev:

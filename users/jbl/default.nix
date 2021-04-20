@@ -3,7 +3,7 @@
   imports = [ ../../profiles/ssh ];
 
   home-manager.users.jbl = { suites, ... }: {
-    imports = suites.base;
+    imports = suites.coding;
   };
 
   users.users.jbl = {
