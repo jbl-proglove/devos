@@ -35,7 +35,7 @@
           border-color = "#202331"
           password-color = "#A6ACCD"
           password-background-color = "#202331"
-          password-border-color = "#9999BB"
+          password-border-color = "#202331"
           border-width = 0px
           background-image = "/etc/wallpapers/nix-wallpaper-simple-blue.png"
         '';

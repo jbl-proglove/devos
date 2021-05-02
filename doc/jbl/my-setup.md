@@ -40,6 +40,18 @@ manager for that matter.
 Thus, the idea is to configure xinit in a way that `startx` is invoked
 directly instead of using a display manager.
 
+The nixos option
+[services.xserver.displayManager.startx.enable](https://nixos.org/manual/nixos/stable/options.html#opt-services.xserver.displayManager.startx.enable)
+should do the trick. Read the notes in the description (provide an
+`.xinitrc`).
+Also, have a look at the options services.xserver.autorun and
+services.xserver.exportConfiguration.
+
+Links:
+
+* [NixOS Wiki: Using X without a Display Manager](https://nixos.wiki/wiki/Using_X_without_a_Display_Manager)
+* [NixOS Forum: example config](https://discourse.nixos.org/t/nixos-without-a-display-manager/360/10)
+
 Another idea is to customize the X startup based on which tty I login.
 An example: login on tty1 and start xmonad using xinitrc. Login on tty2
 and get plain shell. Could be nice to experiment with different methods.
@@ -50,6 +62,12 @@ Currently, the setup uses lightdm with the mini-greeter.
 Links:
 
 * https://www.sitepoint.com/understanding-nix-login-scripts/
+
+### xrandr / monitor configuration
+
+Links:
+
+* [autorandr](: https://github.com/phillipberndt/autorandr)
 
 ### Picom
 
@@ -79,13 +97,31 @@ explicitly as not supported on the font's website.
 TODO Setup an alternative shortcut in xmonad to launch kitty, which is
 configured using FiraCode - kitty supports ligatures.
 
+### Themes
+
+Currently I partly implemented the Dracula theme from themer.dev. The
+theme is applied to alacritty and tmux.
+
+TODO implement a light theme for working in brighter environments
+
+TODO apply Dracula theme to vim
+TODO apply Dracula theme to xmonad / xmobar
+TODO apply Dracula theme to VSCode
+
 ### XMonad
 
 XMonad is used as the window manager
 
 ### xmobar
 
-### tmux
+## rofi
+
+TODO implement a theme switcher like the one by quarkQuark. Include
+tmux, vim, alacritty, wallpaper, lightdm, xmonad, xmobar, VSCode
+
+## tmux
+
+## zsh
 
 
 

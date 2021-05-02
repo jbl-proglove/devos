@@ -213,7 +213,7 @@ c.tabs.position = 'top'
 #   - never: Always hide the tab bar.
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
-c.tabs.show = 'switching'
+c.tabs.show = 'always'
 
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -231,6 +231,7 @@ c.url.searchengines = {
     'aw': 'https://wiki.archlinux.org/index.php?search={}',
     'g': 'https://www.google.com/search?source=&q={}',
     'gi': 'https://www.google.com/search?tbm=isch&q={}',
+    'n': 'https://search.nixos.org/packages?&query={}',
     'aur': 'https://aur.archlinux.org/packages/?O=0&K={}',
     'c': 'https://en.cppreference.com/w/cpp/keyword/{}',
     'r': 'https://doc.rust-lang.org/stable/std/?search={}'
@@ -244,18 +245,16 @@ c.colors.webpage.darkmode.enabled = True
 
 c.colors.webpage.preferred_color_scheme = "dark"
 
-# Font color for hints.
-# Type: QssColor
-c.colors.hints.fg = '#EFF0EB'
+# Font configs
+c.fonts.default_size = '14pt'
 
-# Background color for hints. Note that you can use a `rgba(...)` value
-# for transparency.
-# Type: QssColor
-c.colors.hints.bg = '#1E1F29'
+# Default font size (in pixels) for regular text.
+# Type: Int
+c.fonts.web.size.default = 20
 
-# Font color for the matched part of hints.
-# Type: QssColor
-c.colors.hints.match.fg = '#5AF78E'
+# Default font size (in pixels) for fixed-pitch text.
+# Type: Int
+c.fonts.web.size.default_fixed = 16
 
 # leave listed modes easily with <a-j>
 for mode in\

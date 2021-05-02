@@ -5,6 +5,10 @@ in
   sound.enable = true;
 
   environment = {
+    # add dracula theme as instructed by https://draculatheme.com/qutebrowser
+    etc."xdg/qutebrowser/dracula/draw.py".source = ../../../assets/themes/qutebrowser/dracula/draw.py;
+    etc."xdg/qutebrowser/dracula/__init__.py".source = ../../../assets/themes/qutebrowser/dracula/__init__.py;
+
     etc."xdg/qutebrowser/config.py".text =
       let mpv = "${pkgs.mpv}/bin/mpv";
       in
@@ -16,6 +20,15 @@ in
         }
 
         c.qt.args.append('widevine-path=${pkgs.widevine-cdm}/lib/libwidevinecdm.so')
+
+        import dracula.draw
+
+        dracula.draw.blood(c, {
+            'spacing': {
+                'vertical': 6,
+                'horizontal': 8
+            }
+        })
 
         config.bind(',m', 'hint links spawn -d ${mpv} {hint-url}')
         config.bind(',v', 'spawn -d ${mpv} {url}')
