@@ -9,6 +9,9 @@
     any-nix-shell.flake = false;
     nix-zsh-completions.url = "github:Ma27/nix-zsh-completions";
     nix-zsh-completions.flake = false;
+    # after lenghty tries, I think this is the right place to add this
+    picom.url = "github:ibhagwan/picom/44b4970f70d6b23759a61a2b94d9bfb4351b41b1";
+    picom.flake = false;
     #    redshift.url = "github:minus7/redshift/wayland";
     #    redshift.flake = false;
     #    sddm-chili.url = "github:MarianArlt/sddm-chili/0.1.5";

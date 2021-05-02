@@ -14,6 +14,7 @@
       discord
       element-desktop
       manix
+      picom
       nixpkgs-fmt
       qutebrowser
       signal-desktop

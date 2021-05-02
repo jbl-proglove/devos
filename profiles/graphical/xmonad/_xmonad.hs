@@ -31,22 +31,42 @@ import           XMonad.Layout.Reflect               (reflectHoriz)
 import           XMonad.Util.Cursor
 import qualified XMonad.StackSet                     as S (StackSet, greedyView,
                                                             shift)
+-- adapt github.com/quarkQuark/dotfiles/.config/xmonad/src/xmonad.hs
 
 main :: IO ()
 main =
   xmonad . ewmh $ desktopConfig
   { terminal           = "alacritty"
   , modMask            = myModKey
-  , layoutHook         = avoidStruts myLayout
+  , layoutHook         = avoidStruts $ mySpacing $ myLayout
   , workspaces         = myWorkspaces
   , startupHook        = myAutostart
   , manageHook         = myManageHook
                           <+> manageHook defaultConfig
                           <+> manageDocks
-  , borderWidth        = 2
+  -- Borders
+  , borderWidth        = myBorderWidth
+  , normalBorderColor  = myNormalBorderColour
+  , focusedBorderColor = myFocusedBorderColour
+
   , logHook            = takeTopFocus
   }
   `additionalKeys` myKeys
+
+mySpacing = spacingRaw True             -- Only for >1 window
+                        -- The bottom edge seems to look narrower than it is
+                        (Border 0 15 10 10) -- Size of screen edge gaps
+                        True             -- Enable screen edge gaps
+                        (Border 5 5 5 5) -- Size of window gaps
+                        True             -- Enable window gaps
+
+myBorderWidth :: Dimension
+myBorderWidth = 2
+
+myNormalBorderColour, myFocusedBorderColour :: [Char]
+myNormalBorderColour = "#111111"
+myFocusedBorderColour = "#268bd2"
+
 
 myLayout = smartBorders
   .  mkToggle ( NBFULL ?? EOT)
@@ -61,7 +81,7 @@ myLayout = smartBorders
       delta     = 1/9
 
 myWorkspaces :: [ String ]
-myWorkspaces = ["1:main", "2:art", "3:net", "4:pdf", "5:game", "6:media", "7:im", "8", "9"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- Move Programs by X11 Class to specific workspaces on opening
 myManageHook :: Query

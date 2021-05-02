@@ -21,6 +21,24 @@
         # TODO how do I solve this more elegantly? Currently, this is an
         # implicit dependency to users/jbl, which feels off.
         user = "jbl";
+        extraConfig = ''
+          [greeter]
+          show-password-label = false
+          invalid-password-text = Nope
+          show-input-cursor = true
+          password-alignment = center
+          show-image-on-all-monitors = false
+          [greeter-theme]
+          text-color = "#A6ACCD"
+          error-color = "#F07178"
+          window-color = "#202331"
+          border-color = "#202331"
+          password-color = "#A6ACCD"
+          password-background-color = "#202331"
+          password-border-color = "#9999BB"
+          border-width = 0px
+          background-image = "/etc/wallpapers/nix-wallpaper-simple-blue.png"
+        '';
       };
     };
   };

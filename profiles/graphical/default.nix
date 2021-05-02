@@ -37,10 +37,16 @@
 
   # TODO should this be an overlay? A package? I need to learn stuff...
   environment.etc = {
-    "wallpapers/nixos_wallpaper_1.png".source = ../../assets/images/nixos_wallpaper_1.png;
+    "wallpapers/nix-wallpaper-stripes.png".source = ../../assets/images/nix-wallpaper-stripes.png;
+    "wallpapers/nix-wallpaper-mosaic-blue.png".source = ../../assets/images/nix-wallpaper-mosaic-blue.png;
+    "wallpapers/nix-wallpaper-nineish-dark-gray.png".source = ../../assets/images/nix-wallpaper-nineish-dark-gray.png;
+    "wallpapers/nix-wallpaper-simple-blue.png".source = ../../assets/images/nix-wallpaper-simple-blue.png;
+    "wallpapers/wallpaper-desert.png".source = ../../assets/images/wallpaper-desert.png;
+    "wallpapers/wallpaper-darth-vader.png".source = ../../assets/images/wallpaper-darth-vader.png;
   };
 
-  # TODO what does xbanish do?
+  # ANSWERED: what does xbanish do? - it hides the mouse cursor when
+  # typing starts.
   services.xbanish.enable = true;
 
   services.xserver = {

@@ -91,6 +91,10 @@ in
       "promptsubst"
     ];
 
+    #    promptInit = ''
+    #      eval "$(${pkgs.starship}/bin/starship init zsh)"
+    #    '';
+
     promptInit =
       let
         p10k = pkgs.writeText "pk10.zsh" (fileContents ./p10k.zsh);

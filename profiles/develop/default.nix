@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   # TODO verify
-  imports = [ ./zsh ./kakoune ./tmux ];
+  imports = [ ./zsh ./vim ./kakoune ./tmux ];
 
   environment.shellAliases = { v = "$EDITOR"; pass = "gopass"; };
 
@@ -12,6 +12,9 @@
     VISUAL = "vim";
   };
 
+  # TODO include packages based on inspiration by repos:
+  # - gvolpe
+  # - ...
   environment.systemPackages = with pkgs; [
     clang
     file
@@ -23,19 +26,23 @@
     tig
     tokei
     wget
-    vim
   ];
 
+  # TODO document use of Fira Mono (Fira Code uses ligatures, which are not supported by alacritty).
+  # TODO test alacritty with FiraCode. What do the ligatures look like? Maybe test an ASCII-box
+  # TODO Setup kitty and play with it - kitty supports ligatures and could use Fira Code
+  # TODO I would like to use Fira Code as default. Then I configure Fira Mono as fallback for alacritty.
   fonts =
     let
       nerdfonts = pkgs.nerdfonts.override {
-        fonts = [ "DejaVuSansMono" ];
+        fonts = [ "DejaVuSansMono" "FiraMono" "FiraCode" ];
       };
     in
     {
       fonts = [ nerdfonts ];
       fontconfig.defaultFonts.monospace =
-        [ "DejaVu Sans Mono Nerd Font Complete Mono" ];
+        # [ "DejaVu Sans Mono Nerd Font Complete Mono" ];
+        [ "Fura Mono Regular Nerd Font Complete Mono" ];
     };
 
   documentation.dev.enable = true;

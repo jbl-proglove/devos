@@ -114,7 +114,7 @@ c.content.xss_auditing = True
 #   - path: Show only the download path.
 #   - filename: Show only download filename.
 #   - both: Show download path and filename.
-c.downloads.location.suggestion = 'filename'
+c.downloads.location.suggestion = 'both'
 
 # Where to show the downloaded files.
 # Type: VerticalPosition

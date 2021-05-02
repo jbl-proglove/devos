@@ -1,34 +1,34 @@
+# Disable the blank line at the start of the prompt
+add_newline = false
+
 [aws]
-symbol = " "
+symbol = " "
+
+[aws.region_aliases]
+eu-west-1 = "eu"
+us-east-1 = "us"
 
 [character]
-success_symbol = "[❯](bold purple)"
-vicmd_symbol = "[❮](bold purple)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[✗](bold red) "
+vicmd_symbol = "[](bold green)"
 
 [battery]
-full_symbol = ""
-charging_symbol = ""
-discharging_symbol = ""
-
-[conda]
-symbol = " "
+# we will use xmobar for this
+disabled = true
 
 [directory]
 style = "cyan"
 read_only = " 🔒"
+truncation_length = 5
+truncation_symbol = "…/"
 
 [docker]
 symbol = " "
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
 [git_branch]
 format = "[$symbol$branch]($style) "
-symbol = " "
+symbol = " "
 style = "bold dimmed white"
 
 [git_status]
@@ -52,35 +52,25 @@ symbol = " "
 symbol = " "
 
 [hg_branch]
+disabled = true
 symbol = " "
 
 [java]
 symbol = " "
 
-[julia]
-symbol = " "
-
 [memory_usage]
-symbol = " "
-disabled = false
-
-[nim]
-symbol = " "
+disabled = true
 
 [nix_shell]
-format = '[$symbol$state]($style) '
-symbol = " "
-pure_msg = "λ"
-impure_msg = "⎔"
+impure_msg = "[impure](bold red)"
+pure_msg = "[pure](bold green)"
+format = '[$symbol$state( \($name\))](bold blue) '
 
 [nodejs]
 symbol = " "
 
 [package]
 symbol = " "
-
-[php]
-symbol = " "
 
 [python]
 symbol = " "
@@ -91,5 +81,13 @@ symbol = " "
 [rust]
 symbol = " "
 
-[status]
+[shell]
 disabled = false
+# only disable the shell indicator for zsh, my default shell
+zsh_indicator = ""
+
+[shlvl]
+disabled = true
+
+#[status]
+#disabled = false

@@ -4,6 +4,11 @@
 
   home-manager.users.jbl = { suites, ... }: {
     imports = suites.coding;
+
+    programs.git = {
+      userName = "Julius Blank";
+      userEmail = "julius.blank@proglove.de";
+    };
   };
 
   users.users.jbl = {
