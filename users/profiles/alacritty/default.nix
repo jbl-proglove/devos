@@ -3,23 +3,62 @@
   programs.alacritty = {
     enable = true;
     settings = {
+
+      ########################
+      # environment settings #
+      ########################
       env = {
         TERM = "xterm-256color";
-        # fix issue with differing font sizes on laptop and external
+        # fixes issue with differing font sizes on laptop and external
         # monitors
         WINIT_X11_SCALE_FACTOR = "1";
       };
-      window.decorations = "full";
 
+      ########################
+      # window settings      #
+      ########################
+      window = {
+        title = "Alacritty";
+        class = {
+          instance = "Alacritty";
+          general = "Alacritty";
+        };
+        padding = {
+          x = 6;
+          y = 6;
+        };
+        dynamic_padding = false;
+        decorations = "None";
+      };
+
+      ########################
+      # font settings        #
+      ########################
       font = {
         use_thin_strokes = true;
-        normal.family = "FuraMono Nerd Font";
-        bold.family = "FuraMono Nerd Font";
-        italic.family = "FuraMono Nerd Font";
+        normal = {
+          family = "FuraMono Nerd Font";
+          style = "Regular";
+        };
+        bold = {
+          family = "FuraMono Nerd Font";
+          style = "Bold";
+        };
+        italic = {
+          family = "FuraMono Nerd Font";
+          style = "Italic";
+        };
         size = 14.0;
       };
+
+      ########################
+      # cursor settings      #
+      ########################
       cursor.style = "Block";
-      # INVESTIGATE what makes more sense: set opacity here or in picom?
+
+      ########################
+      # bell settings        #
+      ########################
       bell = {
         animation = "EaseOutExpo";
         duration = 5;
@@ -27,7 +66,11 @@
       };
       selection.save_to_clipboard = true;
 
-      # themer.dev Dracula theme
+      ########################
+      # color settings       #
+      # -------------------- #
+      # themer.dev Dracula   #
+      ########################
       colors = {
         # Default colors
         primary = {
