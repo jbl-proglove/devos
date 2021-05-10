@@ -2,16 +2,27 @@
 {
   environment.systemPackages = with pkgs; [
     farbfeld
-    xss-lock
     imgurbash2
+    haskellPackages.xmobar
     maim
     xclip
     xorg.xdpyinfo
+    xss-lock
   ];
+
+  environment.etc = {
+    "xmobar/xmobarrc".source = ./_xmobar.hs;
+  };
 
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
+    extraPackages = haskellPackages: [
+      haskellPackages.xmonad-contrib
+      haskellPackages.xmonad-extras
+      haskellPackages.xmonad
+      haskellPackages.xmobar
+    ];
     config = import ./xmonad.hs.nix { inherit pkgs; };
   };
 

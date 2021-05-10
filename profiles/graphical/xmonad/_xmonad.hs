@@ -1,8 +1,11 @@
 import           XMonad
+import           System.IO
 import           XMonad.Config.Desktop               (desktopConfig)
 import           XMonad.Hooks.EwmhDesktops           (ewmh)
 import           XMonad.Hooks.ICCCMFocus             (takeTopFocus)
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Util.Run
 import           XMonad.Util.EZConfig                (additionalKeys)
 
 import           Data.Maybe                          (fromMaybe)
@@ -33,12 +36,16 @@ import qualified XMonad.StackSet                     as S (StackSet, greedyView,
                                                             shift)
 -- adapt github.com/quarkQuark/dotfiles/.config/xmonad/src/xmonad.hs
 
-main :: IO ()
-main =
-  xmonad . ewmh $ desktopConfig
-  { terminal           = "alacritty"
+---main :: IO ()
+main = do
+  xmobar <- spawnPipe "xmobar /etc/xmobar/xmobarrc"
+  xmonad $ ewmh $ myConfig xmobar
+
+myConfig logHandle = defaultConfig {
+    terminal           = "alacritty"
   , modMask            = myModKey
-  , layoutHook         = avoidStruts $ mySpacing $ myLayout
+--  , layoutHook         = avoidStruts $ mySpacing $ myLayout
+  , layoutHook         = myLayout
   , workspaces         = myWorkspaces
   , startupHook        = myAutostart
   , manageHook         = myManageHook
@@ -49,9 +56,25 @@ main =
   , normalBorderColor  = myNormalBorderColour
   , focusedBorderColor = myFocusedBorderColour
 
-  , logHook            = takeTopFocus
+--  , logHook            = takeTopFocus
+  , logHook            = myLogHook logHandle
   }
   `additionalKeys` myKeys
+
+
+myLogHook proc = dynamicLogWithPP $ xmobarPP
+          -- Write to bar instead of stdout
+          { ppOutput          = hPutStrLn proc
+          -- How to order the different sections of the log
+          , ppOrder           = \(workspace:layout:title:extras) -> [workspace,layout]
+          -- Separator between different sections of the log
+          , ppSep             = "  "
+          -- Format the workspace information
+          , ppCurrent         = xmobarColor "white" "[●]" -- The workspace currently active
+          , ppHidden          = xmobarColor "white" "●"   -- Workspaces with open windows
+          , ppHiddenNoWindows = xmobarColor "white" "○"   -- Workspaces with no windows
+--          , ppHiddenNoWindows = "○"   -- Workspaces with no windows
+          }
 
 mySpacing = spacingRaw True             -- Only for >1 window
                         -- The bottom edge seems to look narrower than it is
@@ -68,7 +91,7 @@ myNormalBorderColour = "#111111"
 myFocusedBorderColour = "#268bd2"
 
 
-myLayout = smartBorders
+myLayout = smartBorders $ avoidStruts
   .  mkToggle ( NBFULL ?? EOT)
   . onWorkspace "7:im" ( half ||| Mirror half ||| tiled ||| reflectHoriz tiled )
   $ tiled ||| reflectHoriz tiled ||| half ||| Mirror half
