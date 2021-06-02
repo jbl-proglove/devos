@@ -27,16 +27,18 @@
           invalid-password-text = Nope
           show-input-cursor = true
           password-alignment = center
-          show-image-on-all-monitors = false
+          show-image-on-all-monitors = true
           [greeter-theme]
-          text-color = "#A6ACCD"
+          text-color = "#FFD119"
+          password-character = x
           error-color = "#F07178"
-          window-color = "#202331"
-          border-color = "#202331"
-          password-color = "#A6ACCD"
-          password-background-color = "#202331"
+          border-color = "#FFFFFF"
+          window-color = "#202952"
+          password-color = "#FFD119"
+          password-background-color = "#202952
           password-border-color = "#202331"
-          border-width = 0px
+          password-border-width = 0px
+          border-width = 1px
           background-image = "/etc/wallpapers/nix-wallpaper-simple-blue.png"
         '';
       };

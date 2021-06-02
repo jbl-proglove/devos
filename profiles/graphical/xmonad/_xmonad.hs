@@ -1,98 +1,66 @@
-import           XMonad
-import           System.IO
-import           XMonad.Config.Desktop               (desktopConfig)
-import           XMonad.Hooks.EwmhDesktops           (ewmh)
-import           XMonad.Hooks.ICCCMFocus             (takeTopFocus)
-import           XMonad.Hooks.ManageDocks
-import           XMonad.Hooks.DynamicLog
-import           XMonad.Util.Run
-import           XMonad.Util.EZConfig                (additionalKeys)
+import           Control.Monad                       (liftM2)
+import           Data.Monoid                         (Endo)
 
-import           Data.Maybe                          (fromMaybe)
+import           XMonad
+
+import           XMonad.Core                         (Layout, Query,
+                                            ScreenDetail, ScreenId,
+                                            WorkspaceId, X)
+
+import qualified XMonad.StackSet                     as S (StackSet, greedyView,
+                                                            shift)
+
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.SetWMName
+
 import           Graphics.X11.ExtraTypes.XF86        (xF86XK_AudioLowerVolume,
                                                       xF86XK_AudioMute,
                                                       xF86XK_AudioRaiseVolume)
 import           Graphics.X11.Types                  (KeyMask, KeySym, Window)
-import           System.Environment                  (lookupEnv)
-import           XMonad.Layout.ResizableTile         (ResizableTall(..),
-                                                      MirrorResize (MirrorShrink,
-                                                      MirrorExpand))
+
+import           XMonad.Layout.ResizableTile         (ResizableTall(..), MirrorResize (MirrorShrink, MirrorExpand))
 import           XMonad.Layout.MultiToggle
 import           XMonad.Layout.MultiToggle.Instances
-
 import           XMonad.Layout.Spacing
-
-import           Control.Monad                       (liftM2)
-import           Data.Monoid                         (Endo)
-import           XMonad.Core                         (Layout, Query,
-                                                      ScreenDetail, ScreenId,
-                                                      WorkspaceId, X)
-import           XMonad.Hooks.SetWMName              (setWMName)
-import           XMonad.Layout.NoBorders             (smartBorders)
+import           XMonad.Layout.NoBorders             (smartBorders, noBorders)
 import           XMonad.Layout.PerWorkspace          (onWorkspace)
 import           XMonad.Layout.Reflect               (reflectHoriz)
-import           XMonad.Util.Cursor
-import qualified XMonad.StackSet                     as S (StackSet, greedyView,
-                                                            shift)
--- adapt github.com/quarkQuark/dotfiles/.config/xmonad/src/xmonad.hs
 
----main :: IO ()
+import           XMonad.Util.EZConfig                (additionalKeys)
+import           XMonad.Util.Cursor
+import           XMonad.Util.Run
+
 main = do
   xmobar <- spawnPipe "xmobar /etc/xmobar/xmobarrc"
-  xmonad $ ewmh $ myConfig xmobar
+  xmonad $ docks $ myConfig xmobar
 
 myConfig logHandle = defaultConfig {
-    terminal           = "alacritty"
-  , modMask            = myModKey
---  , layoutHook         = avoidStruts $ mySpacing $ myLayout
-  , layoutHook         = myLayout
-  , workspaces         = myWorkspaces
-  , startupHook        = myAutostart
-  , manageHook         = myManageHook
-                          <+> manageHook defaultConfig
-                          <+> manageDocks
-  -- Borders
-  , borderWidth        = myBorderWidth
-  , normalBorderColor  = myNormalBorderColour
-  , focusedBorderColor = myFocusedBorderColour
-
---  , logHook            = takeTopFocus
-  , logHook            = myLogHook logHandle
-  }
+    terminal    = "alacritty"
+  , modMask     = myModKey
+  , startupHook = myAutostart
+  , logHook     = myLogHook logHandle
+  , layoutHook  = noBorders $ avoidStruts $ mySpacing $ layoutHook defaultConfig
+--  , layoutHook  = mySpacing $ avoidStruts $ layoutHook defaultConfig
+  , manageHook  = myManageHook
+                  <+> manageHook defaultConfig
+                  <+> manageDocks
+}
   `additionalKeys` myKeys
 
+myLogHook logHandle = dynamicLogWithPP $ xmobarPP {
+  ppOutput = hPutStrLn logHandle
+}
 
-myLogHook proc = dynamicLogWithPP $ xmobarPP
-          -- Write to bar instead of stdout
-          { ppOutput          = hPutStrLn proc
-          -- How to order the different sections of the log
-          , ppOrder           = \(workspace:layout:title:extras) -> [workspace,layout]
-          -- Separator between different sections of the log
-          , ppSep             = "  "
-          -- Format the workspace information
-          , ppCurrent         = xmobarColor "white" "[●]" -- The workspace currently active
-          , ppHidden          = xmobarColor "white" "●"   -- Workspaces with open windows
-          , ppHiddenNoWindows = xmobarColor "white" "○"   -- Workspaces with no windows
---          , ppHiddenNoWindows = "○"   -- Workspaces with no windows
-          }
-
-mySpacing = spacingRaw True             -- Only for >1 window
-                        -- The bottom edge seems to look narrower than it is
-                        (Border 0 15 10 10) -- Size of screen edge gaps
-                        True             -- Enable screen edge gaps
-                        (Border 5 5 5 5) -- Size of window gaps
-                        True             -- Enable window gaps
-
-myBorderWidth :: Dimension
-myBorderWidth = 2
-
-myNormalBorderColour, myFocusedBorderColour :: [Char]
-myNormalBorderColour = "#111111"
-myFocusedBorderColour = "#268bd2"
-
-
-myLayout = smartBorders $ avoidStruts
-  .  mkToggle ( NBFULL ?? EOT)
+{-|
+The layout hook consists of several parts:
+1. smartBorders
+2. avoidStruts
+3. multiToggle for fullscreen
+4. workspace-specific layouts
+5. a default layout
+myLayout =
+  . mkToggle ( NBFULL ?? EOT )
   . onWorkspace "7:im" ( half ||| Mirror half ||| tiled ||| reflectHoriz tiled )
   $ tiled ||| reflectHoriz tiled ||| half ||| Mirror half
     where
@@ -102,11 +70,13 @@ myLayout = smartBorders $ avoidStruts
       ratiot    = 309/500
       ratioh    = 1/2
       delta     = 1/9
+-}
 
-myWorkspaces :: [ String ]
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+mySpacing = spacingRaw False (Border 4 4 4 4) True (Border 4 4 4 4) True
 
 -- Move Programs by X11 Class to specific workspaces on opening
+-- TODO rework
 myManageHook :: Query
   ( Endo
     ( S.StackSet WorkspaceId (Layout Window) Window ScreenId ScreenDetail )
@@ -127,6 +97,7 @@ myManageHook = composeAll
   ]
     where viewShift = doF . liftM2 (.) S.greedyView S.shift
 
+-- TODO is this the "right" way?
 -- Set ModKey to the Windows Key
 myModKey :: KeyMask
 myModKey = mod4Mask

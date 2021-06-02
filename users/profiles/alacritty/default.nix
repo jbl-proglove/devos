@@ -24,8 +24,8 @@
           general = "Alacritty";
         };
         padding = {
-          x = 6;
-          y = 6;
+          x = 4;
+          y = 4;
         };
         dynamic_padding = false;
         decorations = "None";

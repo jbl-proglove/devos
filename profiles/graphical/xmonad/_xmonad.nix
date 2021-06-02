@@ -7,7 +7,8 @@ in
   fullToggle = do
     spawn "${stoggle}"
     sendMessage $ Toggle NBFULL
-    sendMessage $ SetStruts [] [minBound .. maxBound]
+    sendMessage $ ToggleStruts
+    -- sendMessage $ SetStruts [] [minBound .. maxBound]
 
   setVolume :: String -> X ()
   setVolume options = do
@@ -15,7 +16,7 @@ in
 
   myAutostart :: X ()
   myAutostart = do
-    spawn "${autostart}"
+  --    spawn "${autostart}"
     spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-desert.png"
     setWMName "LG3D"
     sendMessage $ SetStruts [] [minBound .. maxBound]
@@ -66,6 +67,11 @@ in
     , ( ( myModKey .|. shiftMask                , xK_l                    )
 
       , spawn "loginctl lock-session"
+      )
+    -- select monitor setup - TODO replace with menu
+    , ( ( myModKey .|. shiftMask                , xK_d                    )
+
+      , spawn "autorandr -l dual-topdown"
       )
     -- screenshot
     , ( ( myModKey                              , xK_Print                )

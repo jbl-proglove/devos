@@ -5,9 +5,10 @@ let
 
   screenshots = "Pictures/shots";
 
-  autostart = writeScript "xmonad-autostart" (readFile ./scripts/autostart);
 
-  # TODO probably obsolete due to lightdm-mini-greeter, but that's guesswork
+  # TODO add scripts here to change themes etc.
+
+  autostart = writeScript "xmonad-autostart" (readFile ./scripts/autostart);
   stoggle = writeScript "xmonad-stoggle" (readFile ./scripts/stoggle);
 
   #  volnoti = import ../misc/volnoti.nix { inherit pkgs; };

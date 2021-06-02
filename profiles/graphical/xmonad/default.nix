@@ -3,8 +3,9 @@
   environment.systemPackages = with pkgs; [
     farbfeld
     imgurbash2
-    haskellPackages.xmobar
     maim
+    libnotify
+    haskellPackages.xmobar
     xclip
     xorg.xdpyinfo
     xss-lock
@@ -22,6 +23,9 @@
       haskellPackages.xmonad-extras
       haskellPackages.xmonad
       haskellPackages.xmobar
+      # needed by the xmobar Volume command
+      haskellPackages.alsa-core
+      haskellPackages.alsa-mixer
     ];
     config = import ./xmonad.hs.nix { inherit pkgs; };
   };
@@ -30,7 +34,7 @@
     enable = true;
     # TODO exclude browser, rofi, screen locker, what else?
     activeOpacity = 0.9;
-    inactiveOpacity = 0.7;
+    inactiveOpacity = 0.5;
     # INVESTIGATE pro? con?
     backend = "glx";
     fade = true;

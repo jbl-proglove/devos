@@ -16,6 +16,7 @@
         set backspace=indent,eol,start
         set cursorcolumn
         set cursorline
+        set autoindent
         set expandtab
         set lcs=tab:>-,eol:$
         set number
