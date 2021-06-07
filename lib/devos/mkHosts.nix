@@ -12,6 +12,7 @@ let
   ];
 
   modules = {
+    core = "${self}/profiles/core";
     modOverrides = { config, overrideModulesPath, ... }:
       let
         inherit (overrides) modules disabledModules;

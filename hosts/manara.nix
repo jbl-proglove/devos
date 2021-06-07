@@ -1,7 +1,10 @@
-{ suites, ... }:
+{ pkgs, suites, ... }:
 {
   imports = suites.progloveLaptop;
 
+  environment.systemPackages = with pkgs; [
+    lolcat
+  ];
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";

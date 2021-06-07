@@ -23,7 +23,7 @@
     less
     ncdu
     gopass
-    tig
+    lazygit
     tokei
     wget
   ];

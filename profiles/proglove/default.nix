@@ -4,6 +4,10 @@
   # if it stays toplevel, what do I HAVE to import?
   imports = [ ../graphical ];
 
+  environment.systemPackages = with pkgs; [
+    teams
+  ];
+
   services.xserver = {
     #  enable = true;
     displayManager = {

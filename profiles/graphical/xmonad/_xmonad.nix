@@ -73,6 +73,15 @@ in
 
       , spawn "autorandr -l dual-topdown"
       )
+    -- Tree Select/
+    -- tree select actions menu
+    --, ("C-t a", treeselectAction tsDefaultConfig)
+    -- tree select workspaces menu
+    , ( ( myModKey                             , xK_t                    )
+      , TS.treeselectWorkspace tsDefaultConfig myWorkspaces S.greedyView
+      )
+    -- tree select choose workspace to send window
+    --, ("C-t g", TS.treeselectWorkspace tsDefaultConfig myWorkspaces W.shift)
     -- screenshot
     , ( ( myModKey                              , xK_Print                )
       , spawn "maim -u \

@@ -23,7 +23,7 @@ read_only = " 🔒"
 truncation_length = 5
 truncation_symbol = "…/"
 
-[docker]
+[docker_context]
 symbol = " "
 
 [git_branch]
@@ -48,8 +48,8 @@ style = "bold bright-white"
 [golang]
 symbol = " "
 
-[haskell]
-symbol = " "
+#[haskell]
+#symbol = " "
 
 [hg_branch]
 disabled = true

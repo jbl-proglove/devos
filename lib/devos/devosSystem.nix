@@ -39,6 +39,8 @@ lib.nixosSystem (args // {
               # still pull in tools of deactivated profiles
               environment.systemPackages = fullHostConfig.environment.systemPackages;
 
+              environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
+
               # confilcts with networking.wireless which might be slightly
               # more useful on a stick
               networking.networkmanager.enable = lib.mkForce false;

@@ -1,7 +1,11 @@
 import           Control.Monad                       (liftM2)
 import           Data.Monoid                         (Endo)
+import           Data.Tree
+import qualified Data.Map                            as M
 
 import           XMonad
+
+import qualified XMonad.Actions.TreeSelect           as TS
 
 import           XMonad.Core                         (Layout, Query,
                                             ScreenDetail, ScreenId,
@@ -31,6 +35,119 @@ import           XMonad.Util.EZConfig                (additionalKeys)
 import           XMonad.Util.Cursor
 import           XMonad.Util.Run
 
+------------------------------------------------------------------------
+-- VARIABLES
+------------------------------------------------------------------------
+-- It's nice to assign values to stuff that you will use more than once
+-- in the config. Setting values for things like font, terminal and editor
+-- means you only have to change the value here to make changes globally.
+myFont :: String
+myFont = "xft:FuraCode Nerd Font:size=14:regular:antialias=true"
+
+
+------ workspaces
+
+-- TreeSelect workspaces
+myWorkspaces :: Forest String
+myWorkspaces = [ Node "dev"
+                  [ Node "terminal" []
+                  , Node "emacs" []
+                  , Node "docs" []
+                  , Node "files" []
+                  , Node "programming"
+                    [ Node "haskell" []
+                    , Node "python" []
+                    , Node "shell" []
+                    ]
+                  , Node "virtualization" []
+                  ]
+              , Node "web"
+                  [ Node "browser" []
+                  , Node "chat" []
+                  , Node "email" []
+                  , Node "rss" []
+                  , Node "web conference" []
+                  ]
+              , Node "graphics"
+                  [ Node "gimp" []
+                  , Node "image viewer" []
+                  ]
+              , Node "music"
+                  [ Node "audio editor" []
+                  , Node "music player" []
+                  ]
+              , Node "video"
+                  [ Node "obs" []
+                  , Node "kdenlive" []
+                  , Node "video player" []
+                  ]
+              ]
+
+-- Configuration options for treeSelect
+tsDefaultConfig :: TS.TSConfig a
+tsDefaultConfig = TS.TSConfig { TS.ts_hidechildren = True
+                              , TS.ts_background   = 0xdd292d3e
+                              , TS.ts_font         = myFont
+                              , TS.ts_node         = (0xffd0d0d0, 0xff202331)
+                              , TS.ts_nodealt      = (0xffd0d0d0, 0xff292d3e)
+                              , TS.ts_highlight    = (0xffffffff, 0xff755999)
+                              , TS.ts_extra        = 0xffd0d0d0
+                              , TS.ts_node_width   = 200
+                              , TS.ts_node_height  = 20
+                              , TS.ts_originX      = 0
+                              , TS.ts_originY      = 0
+                              , TS.ts_indent       = 80
+                              , TS.ts_navigate     = myTreeNavigation
+                              }
+
+-- Keybindings for treeSelect menus. Use h-j-k-l to navigate.
+-- Use 'o' and 'i' to move forward/back in the workspace history.
+-- Single KEY's are for top-level nodes. SUPER+KEY are for the
+-- second-level nodes. SUPER+ALT+KEY are third-level nodes.
+myTreeNavigation = M.fromList
+    [ ((0, xK_Escape),   TS.cancel)
+    , ((0, xK_Return),   TS.select)
+    , ((0, xK_space),    TS.select)
+    , ((0, xK_Up),       TS.movePrev)
+    , ((0, xK_Down),     TS.moveNext)
+    , ((0, xK_Left),     TS.moveParent)
+    , ((0, xK_Right),    TS.moveChild)
+    , ((0, xK_k),        TS.movePrev)
+    , ((0, xK_j),        TS.moveNext)
+    , ((0, xK_h),        TS.moveParent)
+    , ((0, xK_l),        TS.moveChild)
+    , ((0, xK_o),        TS.moveHistBack)
+    , ((0, xK_i),        TS.moveHistForward)
+    , ((0, xK_d),        TS.moveTo ["dev"])
+    , ((0, xK_g),        TS.moveTo ["graphics"])
+    , ((0, xK_m),        TS.moveTo ["music"])
+    , ((0, xK_v),        TS.moveTo ["video"])
+    , ((0, xK_w),        TS.moveTo ["web"])
+    , ((mod4Mask, xK_b), TS.moveTo ["web", "browser"])
+    , ((mod4Mask, xK_c), TS.moveTo ["web", "chat"])
+    , ((mod4Mask, xK_m), TS.moveTo ["web", "email"])
+    , ((mod4Mask, xK_r), TS.moveTo ["web", "rss"])
+    , ((mod4Mask, xK_w), TS.moveTo ["web", "web conference"])
+    , ((mod4Mask, xK_d), TS.moveTo ["dev", "docs"])
+    , ((mod4Mask, xK_e), TS.moveTo ["dev", "emacs"])
+    , ((mod4Mask, xK_f), TS.moveTo ["dev", "files"])
+    , ((mod4Mask, xK_p), TS.moveTo ["dev", "programming"])
+    , ((mod4Mask, xK_t), TS.moveTo ["dev", "terminal"])
+    , ((mod4Mask, xK_z), TS.moveTo ["dev", "virtualization"])
+    , ((mod4Mask, xK_g), TS.moveTo ["graphics", "gimp"])
+    , ((mod4Mask, xK_i), TS.moveTo ["graphics", "image viewer"])
+    , ((mod4Mask, xK_a), TS.moveTo ["music", "audio editor"])
+    , ((mod4Mask, xK_u), TS.moveTo ["music", "music player"])
+    , ((mod4Mask, xK_o), TS.moveTo ["video", "obs"])
+    , ((mod4Mask, xK_v), TS.moveTo ["video", "video player"])
+    , ((mod4Mask, xK_k), TS.moveTo ["video", "kdenlive"])
+--    , ((mod4Mask .|. altMask, xK_h), TS.moveTo ["dev", "programming", "haskell"])
+--    , ((mod4Mask .|. altMask, xK_p), TS.moveTo ["dev", "programming", "python"])
+--    , ((mod4Mask .|. altMask, xK_s), TS.moveTo ["dev", "programming", "shell"])
+    ]
+
+
+
 main = do
   xmobar <- spawnPipe "xmobar /etc/xmobar/xmobarrc"
   xmonad $ docks $ myConfig xmobar
@@ -42,6 +159,7 @@ myConfig logHandle = defaultConfig {
   , logHook     = myLogHook logHandle
   , layoutHook  = noBorders $ avoidStruts $ mySpacing $ layoutHook defaultConfig
 --  , layoutHook  = mySpacing $ avoidStruts $ layoutHook defaultConfig
+  , workspaces         = TS.toWorkspaces myWorkspaces
   , manageHook  = myManageHook
                   <+> manageHook defaultConfig
                   <+> manageDocks
