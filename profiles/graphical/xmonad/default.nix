@@ -49,7 +49,7 @@
       focus-exclude = "name = 'slock'";
       blur = {
         method = "dual_kawase";
-        strength = 10;
+        strength = 5;
       };
       vsync = true;
     };

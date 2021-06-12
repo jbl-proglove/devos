@@ -43,6 +43,7 @@
     "wallpapers/nix-wallpaper-simple-blue.png".source = ../../assets/images/nix-wallpaper-simple-blue.png;
     "wallpapers/wallpaper-desert.png".source = ../../assets/images/wallpaper-desert.png;
     "wallpapers/wallpaper-darth-vader.png".source = ../../assets/images/wallpaper-darth-vader.png;
+    "wallpapers/wallpaper-light-rain.jpg".source = ../../assets/images/wallpaper-light-rain.jpg;
   };
 
   # ANSWERED: what does xbanish do? - it hides the mouse cursor when

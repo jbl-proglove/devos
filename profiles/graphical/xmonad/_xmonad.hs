@@ -1,6 +1,7 @@
 import           Control.Monad                       (liftM2)
 import           Data.Monoid                         (Endo)
 import           Data.Tree
+import           Data.Ratio                          ((%))
 import qualified Data.Map                            as M
 
 import           XMonad
@@ -24,12 +25,20 @@ import           Graphics.X11.ExtraTypes.XF86        (xF86XK_AudioLowerVolume,
 import           Graphics.X11.Types                  (KeyMask, KeySym, Window)
 
 import           XMonad.Layout.ResizableTile         (ResizableTall(..), MirrorResize (MirrorShrink, MirrorExpand))
-import           XMonad.Layout.MultiToggle
-import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.BinarySpacePartition (emptyBSP)
+import           XMonad.Layout.Grid
+import           XMonad.Layout.Named
+import           XMonad.Layout.IM
+-- import           XMonad.Layout.MultiToggle
+-- import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.ToggleLayouts (ToggleLayout(..), toggleLayouts)
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.NoBorders             (smartBorders, noBorders)
 import           XMonad.Layout.PerWorkspace          (onWorkspace)
 import           XMonad.Layout.Reflect               (reflectHoriz)
+-- import           XMonad                              hiding ( (|||) )  -- don't use the normal ||| operator
+-- import           XMonad.Layout.LayoutCombinators     -- use the one from LayoutCombinators instead
+-- import           XMonad.Layout.LayoutCombinators     hiding ( (|||) ) -- use the one from LayoutCombinators instead
 
 import           XMonad.Util.EZConfig                (additionalKeys)
 import           XMonad.Util.Cursor
@@ -157,7 +166,10 @@ myConfig logHandle = defaultConfig {
   , modMask     = myModKey
   , startupHook = myAutostart
   , logHook     = myLogHook logHandle
-  , layoutHook  = noBorders $ avoidStruts $ mySpacing $ layoutHook defaultConfig
+  , layoutHook  = myLayout
+  , normalBorderColor = "#060814"
+  , focusedBorderColor = "#4a4c57"
+--   , layoutHook  = mySpacing $ smartBorders $ avoidStruts . mkToggle ( NBFULL ?? EOT) $ ResizableTall ||| Mirror ResizableTall
 --  , layoutHook  = mySpacing $ avoidStruts $ layoutHook defaultConfig
   , workspaces         = TS.toWorkspaces myWorkspaces
   , manageHook  = myManageHook
@@ -177,7 +189,7 @@ The layout hook consists of several parts:
 3. multiToggle for fullscreen
 4. workspace-specific layouts
 5. a default layout
-myLayout =
+myLayout = mySpacing $ smartBorders $ avoidStruts
   . mkToggle ( NBFULL ?? EOT )
   . onWorkspace "7:im" ( half ||| Mirror half ||| tiled ||| reflectHoriz tiled )
   $ tiled ||| reflectHoriz tiled ||| half ||| Mirror half
@@ -190,8 +202,13 @@ myLayout =
       delta     = 1/9
 -}
 
+myLayout = toggleLayouts (noBorders Full) others
+  where
+    others = avoidStruts $ mySpacing $ ResizableTall 1 (1.5/100) (3/5) [] ||| emptyBSP
+
 
 mySpacing = spacingRaw False (Border 4 4 4 4) True (Border 4 4 4 4) True
+-- mySpacing = smartSpacing 4
 
 -- Move Programs by X11 Class to specific workspaces on opening
 -- TODO rework

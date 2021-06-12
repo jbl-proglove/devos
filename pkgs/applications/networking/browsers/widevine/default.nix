@@ -1,7 +1,7 @@
-{ stdenv, patchelf, gcc, glib, nspr, nss, unzip, ... }:
+{ lib, stdenv, patchelf, gcc, glib, nspr, nss, unzip, ... }:
 let
   inherit (builtins) fetchurl;
-  inherit (stdenv) lib mkDerivation;
+  inherit (stdenv) mkDerivation;
   mkrpath = p: "${lib.makeSearchPathOutput "lib" "lib64" p}:${lib.makeLibraryPath p}";
 in
 mkDerivation rec {

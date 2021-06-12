@@ -6,8 +6,11 @@ in
   fullToggle :: X ()
   fullToggle = do
     spawn "${stoggle}"
-    sendMessage $ Toggle NBFULL
-    sendMessage $ ToggleStruts
+    sendMessage $ Toggle "Full"
+    -- sendMessage $ ToggleStruts
+    -- sendMessage $ JumpToLayout "Full"
+    -- toggleScreenSpacingEnabled
+    -- toggleWindowSpacingEnabled
     -- sendMessage $ SetStruts [] [minBound .. maxBound]
 
   setVolume :: String -> X ()
@@ -17,9 +20,10 @@ in
   myAutostart :: X ()
   myAutostart = do
   --    spawn "${autostart}"
-    spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-desert.png"
+    spawn "autorandr --change"
+    spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-light-rain.jpg"
     setWMName "LG3D"
-    sendMessage $ SetStruts [] [minBound .. maxBound]
+    -- sendMessage $ SetStruts [] [minBound .. maxBound]
     setDefaultCursor xC_left_ptr
 
   -- Set custom keybinds below following the structure:
