@@ -11,6 +11,61 @@
       #      "gnupg/gpg-agent.conf".text = ''
       #        pinentry-program ${pkgs.pinentry_curses}/bin/pinentry-curses
       #      '';
+
+      # Based on https://konfou.xyz/posts/nixos-without-display-manager/
+      # to get rid of the display manager
+      ".xinitrc".text = ''
+        #!/bin/sh
+
+        userresources=$HOME/.Xresources
+        usermodmap=$HOME/.Xmodmap
+        sysresources=/nix/store/27wfgx3m2cq96k9lvs88b9yjxha6j8l3-xinit-1.4.1/etc/X11/xinit/.Xresources
+        sysmodmap=/nix/store/27wfgx3m2cq96k9lvs88b9yjxha6j8l3-xinit-1.4.1/etc/X11/xinit/.Xmodmap
+
+        # merge in defaults and keymaps
+
+        if [ -f $sysresources ]; then
+          xrdb -merge $sysresources
+        fi
+
+        if [ -f $sysmodmap ]; then
+            xmodmap $sysmodmap
+        fi
+
+        if [ -f "$userresources" ]; then
+            xrdb -merge "$userresources"
+        fi
+
+        if [ -f "$usermodmap" ]; then
+            xmodmap "$usermodmap"
+        fi
+
+        # start some nice programs
+
+        if [ -d /nix/store/27wfgx3m2cq96k9lvs88b9yjxha6j8l3-xinit-1.4.1/etc/X11/xinit/xinitrc.d ] ; then
+          for f in /nix/store/27wfgx3m2cq96k9lvs88b9yjxha6j8l3-xinit-1.4.1/etc/X11/xinit/xinitrc.d/?*.sh ; do
+            [ -x "$f" ] && . "$f"
+          done
+          unset f
+        fi
+
+        # TODO fix using paths in /etc
+        picom --config /nix/store/m0mdwwzkzqzv713mwaws4bs91zqb9sp9-picom.conf --experimental-backends &
+        exec xmonad
+      '';
+
+      ".zprofile".text = ''
+        #!/bin/sh
+        if [ -z "$DISPLAY" ] && [ "$TTY" = "/dev/tty1" ]; then
+          exec startx
+        fi
+      '';
+      ".profile".text = ''
+        #!/bin/sh
+        if [ -z "$DISPLAY" ] && [ "$TTY" = "/dev/tty1" ]; then
+          exec startx
+        fi
+      '';
     };
 
     # TODO find a better way to setup gnupg as a (user?) profile

@@ -44,19 +44,59 @@
     "wallpapers/wallpaper-desert.png".source = ../../assets/images/wallpaper-desert.png;
     "wallpapers/wallpaper-darth-vader.png".source = ../../assets/images/wallpaper-darth-vader.png;
     "wallpapers/wallpaper-light-rain.jpg".source = ../../assets/images/wallpaper-light-rain.jpg;
+
+    # Taken from https://konfou.xyz/posts/nixos-without-display-manager/
+    # in order to get rid off the display manager
+    "profile.local".text = ''
+      #!/bin/sh
+      # /etc/profile.local: DO NOT EDIT -- this file has been generated automatically.
+      if [ -f ~/.profile ]; then
+        . ~/.profile
+      fi
+      #if [ -f "$HOME/.profile" ]; then
+      #  . "$HOME/.profile"
+      #fi
+    '';
+
+    "zprofile.local".text = ''
+      #!/bin/sh
+      # /etc/zprofile.local: DO NOT EDIT -- this file has been generated automatically.
+      if [ -f ~/.zprofile ]; then
+        . ~/.zprofile
+      fi
+      #if [ -f "$HOME/.profile" ]; then
+      #  . "$HOME/.profile"
+      #fi
+    '';
   };
 
   # ANSWERED: what does xbanish do? - it hides the mouse cursor when
   # typing starts.
-  services.xbanish.enable = true;
+  #  services.xbanish.enable = true;
 
   services.xserver = {
     enable = true;
-    displayManager = {
-      defaultSession = "none+xmonad";
+    autorun = false;
+    exportConfiguration = true;
+    layout = "us,de";
+    #    resolutions = [
+    #      { x = 1920; y = 1080; }
+    #      { x = 2560; y = 1440; }
+    #    ];
 
-      # Should be default, but I prefer explicit
-      lightdm.enable = true;
+    # Enable touchpad support.
+    libinput.enable = true;
+
+    # Disable desktop manager.
+    #    desktopManager.default = "none";
+
+
+    displayManager = {
+      startx.enable = true;
+      #      defaultSession = "none+xmonad";
+      #
+      #      # Should be default, but I prefer explicit
+      #      lightdm.enable = true;
     };
   };
 }

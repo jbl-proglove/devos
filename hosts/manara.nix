@@ -1,13 +1,14 @@
-{ pkgs, suites, ... }:
+{ pkgs, suites, hardware, ... }:
 {
-  imports = suites.progloveLaptop;
+  # TODO some day, I'll contribute one for the 5490...
+  imports = suites.progloveLaptop ++ [ hardware.dell-latitude-3480 ];
 
   environment.systemPackages = with pkgs; [
     lolcat
   ];
 
   time.timeZone = "Europe/Berlin";
-  i18n.defaultLocale = "de_DE.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
   #networking.wireless.enable = true;

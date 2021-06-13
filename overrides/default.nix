@@ -30,7 +30,8 @@
           # same for haskell packages, matching ghc versions
           inherit (pkgs.haskell.packages."ghc${version}")
             haskell-language-server;
-        };
-    };
-  };
-}
+          X11_1_10;
+          };
+          };
+          };
+          }
