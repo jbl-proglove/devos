@@ -89,7 +89,7 @@ in
         ## only the builtin laptop monitor
         "laptop" = {
           fingerprint = {
-            "eDP-1" = ${fingerprint_internal};
+            "eDP-1" = fingerprint_internal;
           };
           config = {
             "eDP-1" = {
@@ -105,11 +105,11 @@ in
         ## setup for the external dell monitor above the laptop monitor
         "dual-topdown" = {
           fingerprint = {
-            "eDP-1" = ${fingerprint_internal};
-            "HDMI-1" = ${fingerprint_dell};
+            "eDP-1" = fingerprint_internal;
+            "HDMI-1" = fingerprint_dell;
           };
           config = {
-            "DP-1" = {
+            "HDMI-1" = {
               enable = true;
               primary = true;
               position = "0x0";
@@ -132,7 +132,7 @@ in
         ## setup for the big one at home, the portable screen and the laptop
         "triple-screen" = {
           fingerprint = {
-            "eDP-1" = ${fingerprint_internal};
+            "eDP-1" = fingerprint_internal;
             "HDMI-1" = "00ffffffffffff0005e377320b030000231a0103804728782a9145a7554ea0250c5054bfef00d1c0b30095008180814081c001010101565e00a0a0a0295030203500c48f2100001e000000fd00324c1e631e000a202020202020000000fc0051333237370a20202020202020000000ff004c475847394a413030303737390133020320f14b101f051404130312021101230907078301000067030c001000383c023a801871382d40582c4500c48f2100001e011d007251d01e206e285500c48f2100001e8c0ad08a20e02d10103e9600c48f210000188c0ad090204031200c405500c48f21000018f03c00d051a0355060883a00c48f2100001c000000000019";
             "DP-1" = "00ffffffffffff0066886015010101010b1e0104b03c21783e6435a5544f9e27125054210800d1c0b300a9c0950090408180814081c0293680a070381f40302035002c041100001e000000fc0059544831353650430a20202020000000ff000a202020202020202020202020000000fd00303f686813010a202020202020015c020334f143101f04230907078301000067030c001000382667d85dc401448001e50f00000600e305c000e200ffe60605015959495730801871382d40582c25002c041100001e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000eb";
           };
