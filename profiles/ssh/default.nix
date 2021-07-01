@@ -7,4 +7,6 @@
     permitRootLogin = "no";
     startWhenNeeded = true;
   };
+
+  programs.ssh.startAgent = true;
 }

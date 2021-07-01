@@ -50,7 +50,7 @@
         fi
 
         # TODO fix using paths in /etc
-        picom --config /nix/store/m0mdwwzkzqzv713mwaws4bs91zqb9sp9-picom.conf --experimental-backends &
+        picom --config /nix/store/whax4xand5ckbvcp6rkq5qhmzifkin62-picom.conf --experimental-backends &
         exec xmonad
       '';
 

@@ -1,25 +1,7 @@
-{ pkgs, suites, hardware, ... }:
+{ suites, ... }:
 {
-  # TODO some day, I'll contribute one for the 5490...
-  imports = suites.progloveLaptop ++ [ hardware.dell-latitude-3480 ];
+  imports = suites.privateLaptop;
 
-  environment.systemPackages = with pkgs; [
-    lolcat
-  ];
-
-  #  hardware.video.hidpi.enable = true;
-  console =
-    #    let
-    #      normal = with theme.colors; [ c0 c1 c2 c3 c4 c5 c6 c7 ];
-    #      bright = with theme.colors; [ c8 c9 c10 c11 c12 c13 c14 c15 ];
-    #    in
-    {
-      packages = [ pkgs.powerline-fonts ];
-      font = "ter-powerline-v24n";
-      #      colors = normal ++ bright;
-      earlySetup = true;
-      keyMap = "us";
-    };
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -43,13 +25,6 @@
     device = "nodev";
     efiSupport = true;
     enableCryptodisk = true;
-
-    configurationLimit = 20;
-
-    gfxmodeEfi = "1920x1280";
-    #    theme = pkgs.grub2-themes-virtuaverse;
-    splashImage = pkgs.nixos-artwork.wallpapers.stripes-logo.gnomeFilePath;
-    backgroundColor = "#292A36";
   };
 
   boot.initrd = {
@@ -83,6 +58,6 @@
       fsType = "vfat";
     };
 
-  swapDevices = [{ device = "/dev/disk/by-uuid/f8c073c1-12c5-4c2c-a2f8-5d089d6e1b19"; }];
+  swapDevices = [ ];
 
 }

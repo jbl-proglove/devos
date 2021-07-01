@@ -39,7 +39,9 @@ c.content.pdfjs = True
 # Type: Bool
 c.content.headers.do_not_track = True
 
-c.content.cookies.accept = "no-3rdparty"
+#c.content.cookies.accept = "no-3rdparty"
+# set to `all` to get salesforce admin stuff to work
+c.content.cookies.accept = "all"
 
 c.content.canvas_reading = True
 
@@ -241,7 +243,7 @@ c.url.start_pages = ['https://nixos.org/nixos/manual/options.html']
 
 c.hints.chars = "asdfghjklvbcntyruewom"
 
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 
 c.colors.webpage.preferred_color_scheme = "dark"
 

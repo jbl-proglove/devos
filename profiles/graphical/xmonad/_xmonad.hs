@@ -60,15 +60,12 @@ myFont = "xft:FuraCode Nerd Font:size=14:regular:antialias=true"
 myWorkspaces :: Forest String
 myWorkspaces = [ Node "dev"
                   [ Node "terminal" []
-                  , Node "emacs" []
                   , Node "docs" []
                   , Node "files" []
-                  , Node "programming"
-                    [ Node "haskell" []
-                    , Node "python" []
+                  , Node "programming" [
+                      Node "python" []
                     , Node "shell" []
                     ]
-                  , Node "virtualization" []
                   ]
               , Node "web"
                   [ Node "browser" []
@@ -85,11 +82,7 @@ myWorkspaces = [ Node "dev"
                   [ Node "audio editor" []
                   , Node "music player" []
                   ]
-              , Node "video"
-                  [ Node "obs" []
-                  , Node "kdenlive" []
-                  , Node "video player" []
-                  ]
+              , Node "teams" []
               ]
 
 -- Configuration options for treeSelect
@@ -127,29 +120,20 @@ myTreeNavigation = M.fromList
     , ((0, xK_l),        TS.moveChild)
     , ((0, xK_o),        TS.moveHistBack)
     , ((0, xK_i),        TS.moveHistForward)
-    , ((0, xK_d),        TS.moveTo ["dev"])
-    , ((0, xK_g),        TS.moveTo ["graphics"])
-    , ((0, xK_m),        TS.moveTo ["music"])
-    , ((0, xK_v),        TS.moveTo ["video"])
-    , ((0, xK_w),        TS.moveTo ["web"])
+    , ((0, xK_d),        TS.moveTo ["com"])
+    , ((0, xK_w),        TS.moveTo ["im"])
+    , ((0, xK_g),        TS.moveTo ["web"])
+    , ((0, xK_m),        TS.moveTo ["aws"])
+    , ((0, xK_v),        TS.moveTo ["sys"])
     , ((mod4Mask, xK_b), TS.moveTo ["web", "browser"])
-    , ((mod4Mask, xK_c), TS.moveTo ["web", "chat"])
+    , ((mod4Mask, xK_c), TS.moveTo ["web", "teams"])
     , ((mod4Mask, xK_m), TS.moveTo ["web", "email"])
-    , ((mod4Mask, xK_r), TS.moveTo ["web", "rss"])
+    , ((mod4Mask, xK_r), TS.moveTo ["web", "office"])
     , ((mod4Mask, xK_w), TS.moveTo ["web", "web conference"])
     , ((mod4Mask, xK_d), TS.moveTo ["dev", "docs"])
-    , ((mod4Mask, xK_e), TS.moveTo ["dev", "emacs"])
-    , ((mod4Mask, xK_f), TS.moveTo ["dev", "files"])
     , ((mod4Mask, xK_p), TS.moveTo ["dev", "programming"])
     , ((mod4Mask, xK_t), TS.moveTo ["dev", "terminal"])
-    , ((mod4Mask, xK_z), TS.moveTo ["dev", "virtualization"])
     , ((mod4Mask, xK_g), TS.moveTo ["graphics", "gimp"])
-    , ((mod4Mask, xK_i), TS.moveTo ["graphics", "image viewer"])
-    , ((mod4Mask, xK_a), TS.moveTo ["music", "audio editor"])
-    , ((mod4Mask, xK_u), TS.moveTo ["music", "music player"])
-    , ((mod4Mask, xK_o), TS.moveTo ["video", "obs"])
-    , ((mod4Mask, xK_v), TS.moveTo ["video", "video player"])
-    , ((mod4Mask, xK_k), TS.moveTo ["video", "kdenlive"])
 --    , ((mod4Mask .|. altMask, xK_h), TS.moveTo ["dev", "programming", "haskell"])
 --    , ((mod4Mask .|. altMask, xK_p), TS.moveTo ["dev", "programming", "python"])
 --    , ((mod4Mask .|. altMask, xK_s), TS.moveTo ["dev", "programming", "shell"])
@@ -218,7 +202,7 @@ myManageHook :: Query
   )
 myManageHook = composeAll
   [ className =? "st-256color" --> viewShift "1:main"
-  , className =? "qutebrowser" --> viewShift "1:main"
+  , className =? "qutebrowser" --> viewShift "browser"
   , className =? "Gimp"        --> viewShift "2:art"
   , className =? "krita"       --> viewShift "2:art"
   , className =? "qBittorrent" --> viewShift "3:torrent"

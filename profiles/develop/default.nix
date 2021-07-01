@@ -16,6 +16,8 @@
   # - gvolpe
   # - ...
   environment.systemPackages = with pkgs; [
+    # TODO move this to a separate profile for detailed config
+    awscli2
     clang
     file
     git-crypt

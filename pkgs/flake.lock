@@ -1,12 +1,76 @@
 {
   "nodes": {
+    "any-nix-shell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1612868345,
+        "narHash": "sha256-E6Q7nVPuoC81aGMYOFkmlRv1i6eoOtbYw2AeCCXMR2A=",
+        "owner": "haslersn",
+        "repo": "any-nix-shell",
+        "rev": "ea04f9bd639f175002127ad1b5715bce3d4bd9c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "haslersn",
+        "repo": "any-nix-shell",
+        "type": "github"
+      }
+    },
+    "grub2-theme-virtuaverse": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1619221038,
+        "narHash": "sha256-WzEY3QSloUaTT70m1cZDJkR2NtXB/5/oVb8ZpT54uzA=",
+        "owner": "Patato777",
+        "repo": "dotfiles",
+        "rev": "9762695c4453be963d2d88e43c7207b9b8fe59ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Patato777",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
+    "kak-powerline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620481236,
+        "narHash": "sha256-eLGfvnyBenzm2Cfrky7GjydhbO7Lmub15s+FJhEFVaM=",
+        "owner": "andreyorst",
+        "repo": "powerline.kak",
+        "rev": "c15ee7e46e4f73bd5cc83134bcbbd0a067301369",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreyorst",
+        "repo": "powerline.kak",
+        "type": "github"
+      }
+    },
+    "nix-zsh-completions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1614026477,
+        "narHash": "sha256-TWgo56l+FBXssOYWlAfJ5j4pOHNmontOEolcGdihIJs=",
+        "owner": "Ma27",
+        "repo": "nix-zsh-completions",
+        "rev": "468d8cf752a62b877eba1a196fbbebb4ce4ebb6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ma27",
+        "repo": "nix-zsh-completions",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1615926763,
-        "narHash": "sha256-yeq8A3EPNuQVlsxlEQrIRsklfJwJK0Us6jtcG/u8wNs=",
+        "lastModified": 1624058346,
+        "narHash": "sha256-cnCY5vE7A9ZZwIlQQDZcjOmpxYGKmNUdYWBl2OrHwxY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b702a56d417647de4090ac56c0f18bdc7e646610",
+        "rev": "1a7a786dc1a5d0ed154c49cdd2017e2b6b7f0643",
         "type": "github"
       },
       "original": {
@@ -14,9 +78,84 @@
         "type": "indirect"
       }
     },
+    "picom": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1596510008,
+        "narHash": "sha256-kHoSQi4nT+Z2q2NoGJUI/VHdYgUAVNCUXB0AdvkizkU=",
+        "owner": "ibhagwan",
+        "repo": "picom",
+        "rev": "44b4970f70d6b23759a61a2b94d9bfb4351b41b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ibhagwan",
+        "repo": "picom",
+        "rev": "44b4970f70d6b23759a61a2b94d9bfb4351b41b1",
+        "type": "github"
+      }
+    },
+    "pure": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620411603,
+        "narHash": "sha256-N7EZbdqmlQTspxv3e7nYootwX1dmpDe3TVPGhOuCTTU=",
+        "owner": "sindresorhus",
+        "repo": "pure",
+        "rev": "43aafe0b4dc05174c57ee623c03c64400e832ece",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sindresorhus",
+        "repo": "pure",
+        "type": "github"
+      }
+    },
+    "retroarch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1596838013,
+        "narHash": "sha256-dzPOuT+v1JtYzvAtqZ/eVWQSYQLAWX3TyS3jXdBmDdg=",
+        "owner": "libretro",
+        "repo": "retroarch",
+        "rev": "5e551dd92b79d8127e66939835ea3c2a140c4078",
+        "type": "github"
+      },
+      "original": {
+        "owner": "libretro",
+        "ref": "v1.9.0",
+        "repo": "retroarch",
+        "type": "github"
+      }
+    },
+    "rofi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1599417444,
+        "narHash": "sha256-1cSb7sICEkI/uT7hAkk1W3fl+DQolEZfdNnAlPhsxlM=",
+        "owner": "davatorium",
+        "repo": "rofi",
+        "rev": "12f4e3a1cb0440b9efe902741bd8a92d4ede4245",
+        "type": "github"
+      },
+      "original": {
+        "owner": "davatorium",
+        "repo": "rofi",
+        "rev": "12f4e3a1cb0440b9efe902741bd8a92d4ede4245",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "any-nix-shell": "any-nix-shell",
+        "grub2-theme-virtuaverse": "grub2-theme-virtuaverse",
+        "kak-powerline": "kak-powerline",
+        "nix-zsh-completions": "nix-zsh-completions",
+        "nixpkgs": "nixpkgs",
+        "picom": "picom",
+        "pure": "pure",
+        "retroarch": "retroarch",
+        "rofi": "rofi"
       }
     }
   },

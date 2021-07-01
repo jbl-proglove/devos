@@ -15,6 +15,7 @@
       element-desktop
       manix
       picom
+      rofi
       nixpkgs-fmt
       qutebrowser
       signal-desktop

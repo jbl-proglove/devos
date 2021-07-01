@@ -62,6 +62,11 @@
     backend = "glx";
     fade = true;
     fadeDelta = 3;
+    opacityRules = [
+      "100:name *= 'Microsoft Teams'"
+      "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+    ];
+
     # https://btwiusegentoo.github.io/nixconfig/#org49aacba mentions
     # setting services.picom.blur and .extraOptions.
     # It took me a painful while to find out that these are home-manager
@@ -76,7 +81,7 @@
       };
       vsync = true;
     };
-    experimentalBackends = true;
+    #    experimentalBackends = true;
     shadow = true;
     shadowOpacity = 0.9;
     # not sure if this is needed / better...

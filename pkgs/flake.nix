@@ -12,6 +12,8 @@
     # after lenghty tries, I think this is the right place to add this
     picom.url = "github:ibhagwan/picom/44b4970f70d6b23759a61a2b94d9bfb4351b41b1";
     picom.flake = false;
+    rofi.url = "github:davatorium/rofi/12f4e3a1cb0440b9efe902741bd8a92d4ede4245";
+    rofi.flake = false;
     #    redshift.url = "github:minus7/redshift/wayland";
     #    redshift.flake = false;
     #    sddm-chili.url = "github:MarianArlt/sddm-chili/0.1.5";
@@ -24,6 +26,8 @@
     #    wii-u-gc-adapter.flake = false;
     pure.url = "github:sindresorhus/pure";
     pure.flake = false;
+    grub2-theme-virtuaverse.url = "github:Patato777/dotfiles";
+    grub2-theme-virtuaverse.flake = false;
     kak-powerline = { url = "github:andreyorst/powerline.kak"; flake = false; };
   };
 

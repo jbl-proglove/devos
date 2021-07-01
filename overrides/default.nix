@@ -9,6 +9,7 @@
   # packages pulled from override
   packages = pkgs: final: prev: {
     inherit (pkgs)
+      awscli2
       cachix
       dhall
       discord
