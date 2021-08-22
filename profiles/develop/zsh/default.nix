@@ -34,12 +34,13 @@ in
 
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat";
+      wat = "cat --plain --wrap=never";
 
       df = "df -h";
       du = "du -h";
 
       ls = "exa";
-      l = "ls -lhg --git";
+      l = "ls -lhg --git --icons";
       la = "l -a";
       t = "l -T";
       ta = "la -T";
@@ -50,7 +51,8 @@ in
     };
 
     systemPackages = with pkgs; [
-      bat
+      #      bat
+      broot
       bzip2
       devshell.cli
       exa

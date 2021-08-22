@@ -1,0 +1,9 @@
+self: super: {
+  gopass = super.gopass.overrideAttrs (oldAttrs: rec{
+    postFixup = ''
+    wrapProgram $out/bin/gopass \
+      --prefix PATH : "${oldAttrs.wrapperPath}" \
+      --set GOPASS_NO_REMINDER true
+    '';
+  });
+}

@@ -11,7 +11,10 @@ hash -d \
 
 hash -d \
   github=~git/github.com \
-  gitlab=~git/gitlab.com
+  gitlab=~git/gitlab.com \
+  wa=~git/github.com/workaroundgmbh \
+  ip=~git/github.com/workaroundgmbh/insight-platform \
+  jbl=~git/github.com/jbl-proglove
 
 
 # key binds

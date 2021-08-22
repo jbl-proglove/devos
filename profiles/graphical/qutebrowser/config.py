@@ -227,7 +227,7 @@ c.tabs.show = 'always'
 # `:open google qutebrowser`.
 # Type: Dict
 c.url.searchengines = {
-    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'DEFAULT': 'https://startpage.com/sp/search?query={}',
     'y': 'https://youtube.com/results?search_query={}',
     'w': 'https://en.wikipedia.org/w/index.php?search={}',
     'aw': 'https://wiki.archlinux.org/index.php?search={}',
@@ -240,6 +240,7 @@ c.url.searchengines = {
 }
 
 c.url.start_pages = ['https://nixos.org/nixos/manual/options.html']
+c.url.default_page = 'https://startpage.com/'
 
 c.hints.chars = "asdfghjklvbcntyruewom"
 
@@ -266,7 +267,9 @@ for mode in\
     config.bind('<Alt+j>', 'leave-mode', mode=mode)
 
 # Bindings for normal mode
-config.bind(',p', 'spawn --userscript qute-pass -M gopass')
+#config.bind(',p', 'spawn --userscript qute-pass -M gopass --username-target secret --username-pattern "username: (.+)"')
+config.bind(',p', 'spawn --userscript qute-pass --username-target secret --username-pattern "username: (.+)"')
+config.bind(',f', 'spawn --userscript qute-pass --unfiltered')
 config.bind(',P', 'set-cmd-text -s :open -p')
 config.bind(',r', 'restart')
 config.bind(',c', 'config-source')

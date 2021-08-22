@@ -4,30 +4,51 @@
   imports = [ ../python ../haskell ];
 
   environment.systemPackages = with pkgs; [
-    ((vim_configurable.override { python = python3; }).customize {
-      name = "vim";
-      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
-        start = [ vim-nix vim-lastplace ];
-        opt = [ ];
+    (neovim.override {
+      vimAlias = true;
+      configure = {
+        packages.myplugins = with pkgs.vimPlugins; {
+          start = [
+            vim-nix
+            vim-lastplace
+            # see and learn https://github.com/jiangmiao/auto-pairs
+            auto-pairs
+            vim-colorschemes
+            indentLine
+          ];
+          opt = [
+            # see and learn https://github.com/elzr/vim-json
+            vim-json
+          ];
+        };
+        customRC = ''
+          " systemwide vimrc baseline
+          set nocompatible
+          set backspace=indent,eol,start
+          set cursorcolumn
+          set cursorline
+          set autoindent
+          set expandtab
+          set lcs=tab:>-,eol:$
+          set number
+          set ruler
+          set shiftwidth=2
+          set smartcase
+          set tabstop=2
+          set textwidth=72
+          syntax on
+
+          " colors
+          colorscheme nord
+
+          " filetype-specific settings (see https://nixos.wiki/wiki/Vim#Using_vim.27s_builtin_packaging_capability)
+          autocmd FileType json :packadd vim-json
+          " set correct yaml indentation (https://www.arthurkoziel.com/setting-up-vim-for-yaml/)
+          autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+          let g:indentLine_char = '⦙'
+          "
+        '';
       };
-      vimrcConfig.customRC = ''
-        " systemwide vimrc baseline
-        set nocompatible
-        set backspace=indent,eol,start
-        set cursorcolumn
-        set cursorline
-        set autoindent
-        set expandtab
-        set lcs=tab:>-,eol:$
-        set number
-        set ruler
-        set shiftwidth=2
-        set smartcase
-        set tabstop=2
-        set textwidth=72
-        syntax on
-        "
-      '';
     }
     )
   ];

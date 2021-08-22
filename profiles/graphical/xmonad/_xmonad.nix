@@ -65,7 +65,7 @@ in
       )
     -- start qutebrowser
     , ( ( myModKey                              , xK_b                    )
-      , spawn "qute"
+      , spawn "GPG_TTY=$(tty) qute"
       )
     -- screen lock
     , ( ( myModKey .|. shiftMask                , xK_l                    )

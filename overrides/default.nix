@@ -14,11 +14,13 @@
       dhall
       discord
       element-desktop
+      #gnupg
       manix
       nixpkgs-fmt
       qutebrowser
       signal-desktop
       starship
+      terraform
       vscode-extensions
       vscodium
       ;

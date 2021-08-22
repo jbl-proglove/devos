@@ -56,8 +56,8 @@
   services.picom = {
     enable = true;
     # TODO exclude browser, rofi, screen locker, what else?
-    activeOpacity = 0.9;
-    inactiveOpacity = 0.5;
+    activeOpacity = 1.0;
+    inactiveOpacity = 0.9;
     # INVESTIGATE pro? con?
     backend = "glx";
     fade = true;

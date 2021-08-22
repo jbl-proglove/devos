@@ -22,6 +22,7 @@ in
       gptfdisk
       iputils
       jq
+      killall
       yq
       manix
       moreutils

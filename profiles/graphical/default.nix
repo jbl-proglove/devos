@@ -47,27 +47,27 @@
 
     # Taken from https://konfou.xyz/posts/nixos-without-display-manager/
     # in order to get rid off the display manager
-    "profile.local".text = ''
-      #!/bin/sh
-      # /etc/profile.local: DO NOT EDIT -- this file has been generated automatically.
-      if [ -f ~/.profile ]; then
-        . ~/.profile
-      fi
-      #if [ -f "$HOME/.profile" ]; then
-      #  . "$HOME/.profile"
-      #fi
-    '';
+    #    "profile.local".text = ''
+    #      #!/bin/sh
+    #      # /etc/profile.local: DO NOT EDIT -- this file has been generated automatically.
+    #      if [ -f ~/.profile ]; then
+    #        . ~/.profile
+    #      fi
+    #      #if [ -f "$HOME/.profile" ]; then
+    #      #  . "$HOME/.profile"
+    #      #fi
+    #    '';
 
-    "zprofile.local".text = ''
-      #!/bin/sh
-      # /etc/zprofile.local: DO NOT EDIT -- this file has been generated automatically.
-      if [ -f ~/.zprofile ]; then
-        . ~/.zprofile
-      fi
-      #if [ -f "$HOME/.profile" ]; then
-      #  . "$HOME/.profile"
-      #fi
-    '';
+    #    "zprofile.local".text = ''
+    #      #!/bin/sh
+    #      # /etc/zprofile.local: DO NOT EDIT -- this file has been generated automatically.
+    #      if [ -f ~/.zprofile ]; then
+    #        . ~/.zprofile
+    #      fi
+    #      #if [ -f "$HOME/.profile" ]; then
+    #      #  . "$HOME/.profile"
+    #      #fi
+    #    '';
   };
 
   # ANSWERED: what does xbanish do? - it hides the mouse cursor when
@@ -76,9 +76,12 @@
 
   services.xserver = {
     enable = true;
-    autorun = false;
-    exportConfiguration = true;
-    layout = "us,de";
+    #  tty = 1;
+    #autorun = false;
+    autorun = true;
+    #exportConfiguration = true;
+    #layout = "us";
+    layout = "us";
     #    resolutions = [
     #      { x = 1920; y = 1080; }
     #      { x = 2560; y = 1440; }
@@ -92,11 +95,11 @@
 
 
     displayManager = {
-      startx.enable = true;
-      #      defaultSession = "none+xmonad";
+      #startx.enable = true;
+      defaultSession = "none+xmonad";
       #
-      #      # Should be default, but I prefer explicit
-      #      lightdm.enable = true;
+      # Should be default, but I prefer explicit
+      lightdm.enable = true;
     };
   };
 }

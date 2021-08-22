@@ -17,7 +17,7 @@
   };
 
   user = with userProfiles; rec {
-    base = [ direnv git alacritty ];
+    base = [ direnv git alacritty bat xdg ];
 
     coding = base ++ [ vscode-with-extensions ];
   };

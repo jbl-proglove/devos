@@ -6,6 +6,7 @@ in
     let
       packages = pythonPackages:
         with pythonPackages; [
+          boto3
           numpy
           pandas
           ptpython
