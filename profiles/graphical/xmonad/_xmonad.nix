@@ -20,9 +20,9 @@ in
   myAutostart :: X ()
   myAutostart = do
   --    spawn "${autostart}"
-    spawn "autorandr --change"
     spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-light-rain.jpg"
     setWMName "LG3D"
+    spawn "autorandr --change"
     -- sendMessage $ SetStruts [] [minBound .. maxBound]
     setDefaultCursor xC_left_ptr
 
@@ -51,6 +51,14 @@ in
     , ( ( myModKey .|. shiftMask                , xK_f                    )
       , sendMessage ToggleStruts
       )
+    -- rofi pass
+    , ( ( myModKey                              , xK_r                    )
+      , spawn "gopass ls --flat | rofi -dmenu -p gopass | xargs --no-run-if-empty gopass show -o | head -n 1 | xdotool type --clearmodifiers --file -"
+      )
+    -- rofi app launcher
+    , ( ( myModKey                              , xK_p                    )
+      , spawn "rofi -show run"
+      )
     -- lower volume
     , ( ( 0                                     , xF86XK_AudioLowerVolume )
       , setVolume "2%- unmute"
@@ -65,17 +73,19 @@ in
       )
     -- start qutebrowser
     , ( ( myModKey                              , xK_b                    )
-      , spawn "GPG_TTY=$(tty) qute"
+      , spawn "qute"
       )
     -- screen lock
-    , ( ( myModKey .|. shiftMask                , xK_l                    )
-
-      , spawn "loginctl lock-session"
+    , ( ( myModKey                              , xK_l                    )
+      , spawn "slock"
       )
-    -- select monitor setup - TODO replace with menu
+    -- select monitor setup that was detected - TODO replace with menu
+    , ( ( myModKey                              , xK_d                    )
+      , spawn "autorandr -l laptop"
+      )
+    -- select monitor setup laptop - TODO replace with menu
     , ( ( myModKey .|. shiftMask                , xK_d                    )
-
-      , spawn "autorandr -l dual-topdown"
+      , spawn "autorandr -c"
       )
     -- Tree Select/
     -- tree select actions menu

@@ -18,6 +18,9 @@
     # TODO not sure if this is the right place
     alacritty
     # TODO verify and select packages for XMonad
+    # TODO customize dunst
+    cmatrix
+    dunst
     dzen2 # used by xmonad/scripts/stoggle
     feh
     ffmpeg-full
@@ -93,6 +96,7 @@
     # Disable desktop manager.
     #    desktopManager.default = "none";
 
+    updateDbusEnvironment = true;
 
     displayManager = {
       #startx.enable = true;

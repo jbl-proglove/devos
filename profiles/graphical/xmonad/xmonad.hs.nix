@@ -10,6 +10,7 @@ let
 
   autostart = writeScript "xmonad-autostart" (readFile ./scripts/autostart);
   stoggle = writeScript "xmonad-stoggle" (readFile ./scripts/stoggle);
+  rofi-pass = writeScript "xmonad-rofi-pass" (readFile ./scripts/rofi-pass);
 
   #  volnoti = import ../misc/volnoti.nix { inherit pkgs; };
 in

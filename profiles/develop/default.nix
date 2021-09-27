@@ -1,7 +1,15 @@
 { config, pkgs, ... }:
 {
   # TODO verify
-  imports = [ ./zsh ./vim ./kakoune ./tmux ];
+  #imports = [ ./zsh ./vim ./kakoune ./tmux ./gnupg ];
+  imports = [ ./zsh ./vim ./kakoune ./tmux ./gopass ];
+
+  #  config.packageOverrides = pkgs: {
+  #    gnupg = pkgs.gnupg.override {
+  #      pinentry = pkgs.pinentry-gtk2;
+  #      guiSupport = true;
+  #    };
+  #  };
 
   environment = {
     shellAliases = {
@@ -12,7 +20,11 @@
       vv = "v !!$";
     };
 
-    variables.GNUPGHOME = "~/.gnupg";
+    #    extraInit = ''
+    #      export GPG_TTY=$(tty)
+    #      '';
+
+    #variables.GNUPGHOME = "~/.gnupg";
 
     sessionVariables = {
       PAGER = "less";
@@ -32,13 +44,12 @@
       clang
       file
       git-crypt
-      #(gnupg.override {
-      #  pinentry = pkgs.pinentry_curses;
-      #  pinentryBinaryPath = "/run/current/sw/bin/pinentry-curses";
-      #})
-      #pinentry
+      #      (gnupg.override { pinentry = pkgs.pinentry-gtk2; guiSupport = true; })
+      #      gnupg
+      #      pinentry-gtk2
+      #      pinentry
       #pinentry-curses
-      gopass
+      #      gopass
       ncdu
       lazygit
       less
@@ -68,10 +79,10 @@
 
   documentation.dev.enable = true;
 
-  #programs.gnupg.agent = {
-  #  enable = false;
-  #  pinentryFlavor = "curses";
-  #};
+  #  programs.gnupg.agent = {
+  #    enable = false;
+  #    pinentryFlavor = "gtk2";
+  #  };
 
   programs.thefuck.enable = true;
   programs.firejail.enable = true;

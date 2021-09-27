@@ -10,12 +10,15 @@ in
 
     systemPackages = with pkgs; [
       binutils
+      choose # see https://lib.rs/crates/choose
       coreutils
       curl
       deploy-rs
       direnv
       dnsutils
       dosfstools
+      # no package in nixpkgs yet
+      #eureka          # see https://lib.rs/crates/eureka
       fd
       git
       gotop
@@ -23,18 +26,20 @@ in
       iputils
       jq
       killall
-      yq
       manix
       moreutils
       neofetch # bash system information
       nix-index
       nmap
+      rage # see https://lib.rs/crates/rage
       ripgrep
       skim
       tealdeer
       usbutils
       utillinux
       whois
+      yj # see https://lib.rs/crates/yj
+      yq
     ];
 
     shellInit = ''
@@ -42,6 +47,7 @@ in
         pkgs.writeText "starship.toml"
         (fileContents ./starship.toml)
       }
+      #export GPG_TTY=$(tty)
     '';
 
     shellAliases =
@@ -144,6 +150,7 @@ in
     '';
     interactiveShellInit = ''
       eval "$(${pkgs.direnv}/bin/direnv hook bash)"
+      #export GPG_TTY=$(tty)
     '';
   };
 

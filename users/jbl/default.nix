@@ -6,6 +6,8 @@ let
   fingerprint_dell_for = "00ffffffffffff0010acdad04c304a31151f010380351e78ea0565a756529c270f5054a54b00714f8180a9c0d1c00101010101010101023a801871382d40582c45000f282100001e000000ff00345038375044330a2020202020000000fc0044454c4c205032343139480a20000000fd00384c1e5311000a2020202020200131020317b14c9005040302071601141f121365030c001000023a801871382d40582c45000f282100001e011d8018711c1620582c25000f282100009e011d007251d01e206e2855000f282100001e8c0ad08a20e02d10103e96000f282100001800000000000000000000000000000000000000000000000000000000000000003d";
   fingerprint_dell_pg = "00ffffffffffff0010acdad0424d5638111d010380351e78ea0565a756529c270f5054a54b00714f8180a9c0d1c00101010101010101023a801871382d40582c45000f282100001e000000ff00394e54364d56320a2020202020000000fc0044454c4c205032343139480a20000000fd00384c1e5311000a20202020202001e5020317b14c9005040302071601141f121365030c001000023a801871382d40582c45000f282100001e011d8018711c1620582c25000f282100009e011d007251d01e206e2855000f282100001e8c0ad08a20e02d10103e96000f282100001800000000000000000000000000000000000000000000000000000000000000003d";
   fingerprint_aoc = "00ffffffffffff0005e377320b030000231a0103804728782a9145a7554ea0250c5054bfef00d1c0b30095008180814081c001010101565e00a0a0a0295030203500c48f2100001e000000fd00324c1e631e000a202020202020000000fc0051333237370a20202020202020000000ff004c475847394a413030303737390133020320f14b101f051404130312021101230907078301000067030c001000383c023a801871382d40582c4500c48f2100001e011d007251d01e206e285500c48f2100001e8c0ad08a20e02d10103e9600c48f210000188c0ad090204031200c405500c48f21000018f03c00d051a0355060883a00c48f2100001c000000000019";
+  fingerprint_benq_blitz = "00ffffffffffff0009d11680455400002e1c010380351e782eba45a159559d280d5054a56b80810081c08180a9c0b300d1c001010101023a801871382d40582c4500132a2100001e000000ff0041424a3034363933534c300a20000000fd00324c1e5311000a202020202020000000fc0042656e5120424c323430350a2001a7020322f14f90050403020111121314060715161f2309070765030c00100083010000023a801871382d40582c4500132a2100001f011d8018711c1620582c2500132a2100009f011d007251d01e206e285500132a2100001e8c0ad08a20e02d10103e9600132a21000018000000000000000000000000000000000000000000eb";
+  fingerprint_aoc_pg = "00ffffffffffff0005e37827fe000000231a0103803c22782aa595a65650a0260d5054bfef00d1c0b30095008180814081c001010101565e00a0a0a029503020350055502100001e000000fd00324c1e631e000a202020202020000000fc0032373738580a20202020202020000000ff004533334739424130303032353401ec02031ef14b101f051404130312021101230907078301000065030c001000023a801871382d40582c450055502100001e011d007251d01e206e28550055502100001e8c0ad08a20e02d10103e96005550210000188c0ad090204031200c405500555021000018000000000000000000000000000000000000000000000000006d";
 in
 {
   imports = [ ../../profiles/ssh ];
@@ -27,21 +29,24 @@ in
       DG_BIN_HOME = "$HOME/.local/bin";
     };
 
-    programs.gpg = {
-      enable = true;
-      package = pkgs.gnupg;
-    };
+    #programs.gpg = {
+    #  enable = true;
+    #  package = pkgs.gnupg22;
+    #  let
+    #    gnupg22 = pkgs.gnupg22.pinentry = pkgs.pinentry-curses;
+    #  in gnupg22;
+    #};
 
-    services.gpg-agent = {
-      enable = true;
-      pinentryFlavor = "gtk2";
-      enableSshSupport = true;
-      enableExtraSocket = true;
-      defaultCacheTtl = 34560000;
-      defaultCacheTtlSsh = 34560000;
-      maxCacheTtl = 34560000;
-      maxCacheTtlSsh = 34560000;
-    };
+    #services.gpg-agent = {
+    #  enable = true;
+    #  pinentryFlavor = "gtk2";
+    #  enableSshSupport = true;
+    #  enableExtraSocket = true;
+    #  defaultCacheTtl = 34560000;
+    #  defaultCacheTtlSsh = 34560000;
+    #  maxCacheTtl = 34560000;
+    #  maxCacheTtlSsh = 34560000;
+    #};
     # setup files in /home/jbl/
     home.file = {
       ".zshrc".text = ''
@@ -138,21 +143,31 @@ in
           config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "1920x1080"; };
           config."eDP1" = { enable = true; primary = false; position = "0x1080"; mode = "1920x1080"; };
         };
+        "dual-topdown-pg-blitz" = {
+          fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_benq_blitz; };
+          config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "1920x1080"; };
+          config."eDP1" = { enable = true; primary = false; position = "0x1080"; mode = "1920x1080"; };
+        };
+        "dual-topdown-pg-aoc" = {
+          fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_aoc_pg; };
+          config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "1920x1080"; };
+          config."eDP1" = { enable = true; primary = false; position = "0x1080"; mode = "1920x1080"; };
+        };
         "dual-topdown-merian" = {
           fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_aoc; };
           config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "2560x1440"; };
           config."eDP1" = { enable = true; primary = false; position = "0x1440"; mode = "1920x1080"; };
         };
-        "dual-topdown" = {
+        "dual-martina" = {
           fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_dell; };
           config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "1920x1080"; };
-          config."eDP1" = { enable = true; primary = false; position = "0x1080"; mode = "1920x1080"; };
+          config."eDP1" = { enable = true; primary = false; position = "1920x800"; mode = "1920x1080"; };
         };
         ## setup for the big one at home, the portable screen and the laptop
         "triple-screen" = {
           fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_aoc; "DP1" = fingerprint_portable_usbc; };
-          config."eDP1" = { enable = true; primary = false; position = "2560x0"; mode = "1920x1080"; };
-          config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "2560x1440"; };
+          config."eDP1" = { enable = true; primary = false; position = "1920x1440"; mode = "1920x1080"; };
+          config."HDMI1" = { enable = true; primary = true; position = "640x0"; mode = "2560x1440"; };
           config."DP1" = { enable = true; primary = false; position = "0x1440"; mode = "1920x1080"; };
         };
         ## setup for the big one at home, the portable screen and the laptop

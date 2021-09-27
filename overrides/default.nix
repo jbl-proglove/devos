@@ -15,6 +15,7 @@
       discord
       element-desktop
       #gnupg
+      #  haskell-language-server;
       manix
       nixpkgs-fmt
       qutebrowser
@@ -25,16 +26,16 @@
       vscodium
       ;
 
-    haskellPackages = prev.haskellPackages.override {
-      overrides = hfinal: hprev:
-        let version = prev.lib.replaceChars [ "." ] [ "" ] prev.ghc.version;
-        in
-        {
-          # same for haskell packages, matching ghc versions
-          inherit (pkgs.haskell.packages."ghc${version}")
-            haskell-language-server;
-          X11_1_10;
-          };
-          };
-          };
-          }
+    #    haskellPackages = prev.haskellPackages.override {
+    #      overrides = hfinal: hprev:
+    #      let version = prev.lib.replaceChars [ "." ] [ "" ] prev.ghc.version;
+    #      in
+    #      {
+    #        # same for haskell packages, matching ghc versions
+    #        inherit (pkgs.haskell.packages."ghc${version}")
+    #          haskell-language-server;
+    #          X11_1_10;
+    #      };
+    #    };
+  };
+}

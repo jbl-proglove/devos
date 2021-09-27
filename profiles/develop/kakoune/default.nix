@@ -8,7 +8,7 @@
     kakoune-config
     kakoune
     nixpkgs-fmt
-    python3Packages.python-language-server
+    #    python3Packages.python-language-server
     rustup
     nix-linter
     dhall

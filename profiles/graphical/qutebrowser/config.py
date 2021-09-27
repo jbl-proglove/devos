@@ -267,10 +267,12 @@ for mode in\
     config.bind('<Alt+j>', 'leave-mode', mode=mode)
 
 # Bindings for normal mode
-#config.bind(',p', 'spawn --userscript qute-pass -M gopass --username-target secret --username-pattern "username: (.+)"')
-config.bind(',p', 'spawn --userscript qute-pass --username-target secret --username-pattern "username: (.+)"')
-config.bind(',f', 'spawn --userscript qute-pass --unfiltered')
-config.bind(',P', 'set-cmd-text -s :open -p')
+config.bind(',p', 'spawn --userscript qute-pass -M gopass --username-target secret --username-pattern "username: (.+)"')
+config.bind(',u', 'spawn --userscript qute-pass -M gopass --username-only --username-target secret --username-pattern "username: (.+)"')
+config.bind(',P', 'spawn --userscript qute-pass -M gopass --password-only --username-target secret --username-pattern "username: (.+)"')
+#config.bind(',p', 'spawn --userscript qute-pass --username-target secret --username-pattern "username: (.+)"')
+config.bind(',f', 'spawn --userscript qute-pass -M gopass')
+#config.bind(',P', 'set-cmd-text -s :open -p')
 config.bind(',r', 'restart')
 config.bind(',c', 'config-source')
 config.bind(';I', 'hint images download')

@@ -1,0 +1,10 @@
+#final: prev: {
+#  gnupg = prev.gnupg.overrideAttrs (oldAttrs: rec {
+#    #pinentryBinaryPath = final.lib.makeBinPath ( [ pinentry-curses ] );
+#    pinentryBinaryPath = "bla";
+#    guiSupport = true;
+#    postInstall = ''
+#       ln -sf ${prev.pinentry.outPath}/bin/pinentry $out/bin/pinentry
+#    '';
+#  });
+#}

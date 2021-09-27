@@ -44,6 +44,9 @@ in
       la = "l -a";
       t = "l -T";
       ta = "la -T";
+      d1 = "t -L 1 -D";
+      d2 = "t -L 2 -D";
+      d3 = "t -L 3 -D";
 
       ps = "${pkgs.procs}/bin/procs";
 

@@ -7,6 +7,7 @@
     libnotify
     haskellPackages.xmobar
     xclip
+    xdotool
     xorg.xdpyinfo
     xss-lock
   ];
