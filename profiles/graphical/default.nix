@@ -84,7 +84,7 @@
     autorun = true;
     #exportConfiguration = true;
     #layout = "us";
-    layout = "us";
+    layout = "us(intl)";
     #    resolutions = [
     #      { x = 1920; y = 1080; }
     #      { x = 2560; y = 1440; }
