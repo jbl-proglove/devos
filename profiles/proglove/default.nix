@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     teams
+    drawio
   ];
 
   services.xserver = {

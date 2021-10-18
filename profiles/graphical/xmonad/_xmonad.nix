@@ -20,7 +20,7 @@ in
   myAutostart :: X ()
   myAutostart = do
   --    spawn "${autostart}"
-    spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-light-rain.jpg"
+    spawn "feh --bg-fill --no-fehbg /etc/wallpapers/wallpaper-wallhaven-moon.jpg"
     setWMName "LG3D"
     spawn "autorandr --change"
     -- sendMessage $ SetStruts [] [minBound .. maxBound]

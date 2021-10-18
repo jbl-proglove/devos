@@ -1,7 +1,9 @@
 Config { position = Top
         , font     = "xft:FuraCode Nerd Font:size=14:bold:antialias=true"
-        , fgColor = "#6d6e7a"
-        , bgColor = "#282a36"
+--        , fgColor = "#6d6e7a"
+        , fgColor = "#2e3440"
+--        , bgColor = "#282a36"
+        , bgColor = "#d8dee9"
         , lowerOnStart = False
 --        , bgColor = "#dadbd7"
 --        , border = BottomB

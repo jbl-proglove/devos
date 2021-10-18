@@ -54,11 +54,13 @@
     config = import ./xmonad.hs.nix { inherit pkgs; };
   };
 
+  # TODO apply stuff from https://github.com/hlissner/dotfiles/blob/b5a6812227c24b975819cf1a8705cd24c6917aa2/modules/desktop/default.nix
+  # TODO checkout https://gist.github.com/scheckley/b91d7b50c7f372ba7107baf01127da3a
   services.picom = {
     enable = true;
     # TODO exclude browser, rofi, screen locker, what else?
-    activeOpacity = 1.0;
-    inactiveOpacity = 0.9;
+    activeOpacity = 0.9;
+    inactiveOpacity = 0.8;
     # INVESTIGATE pro? con?
     backend = "glx";
     fade = true;
@@ -78,9 +80,24 @@
       focus-exclude = "name = 'slock'";
       blur = {
         method = "dual_kawase";
-        strength = 5;
+        strength = 6;
       };
       vsync = true;
+      shadow-exclude = [
+        "name = 'xmobar'"
+        #        "name *= 'rofi'"
+        "name *= 'compton'"
+        "name *= 'picom'"
+        "name *= 'Chromium'"
+        "name *= 'Chrome'"
+        "class_g = 'Firefox' && argb"
+      ];
+      shadow-radius = 3;
+      shadow-offset-x = 3;
+      shadow-offset-y = 3;
+      shadow-opacity = 0.5;
+      shadow-blue = 0.2;
+      shadow-red = 0.1;
     };
     #    experimentalBackends = true;
     shadow = true;

@@ -29,6 +29,7 @@
     librsvg
     libsForQt5.qtstyleplugins
     manpages
+    nyxt
     #    papirus-icon-theme
     pulsemixer
     qt5.qtgraphicaleffects
@@ -47,6 +48,10 @@
     "wallpapers/wallpaper-desert.png".source = ../../assets/images/wallpaper-desert.png;
     "wallpapers/wallpaper-darth-vader.png".source = ../../assets/images/wallpaper-darth-vader.png;
     "wallpapers/wallpaper-light-rain.jpg".source = ../../assets/images/wallpaper-light-rain.jpg;
+    "wallpapers/wallpaper-lake-mountains.jpg".source = ../../assets/images/wallpaper-lake-mountains.jpg;
+    "wallpapers/wallpaper-nord-nixos-1.jpg".source = ../../assets/images/wallpaper-nord-nixos-1.jpg;
+    "wallpapers/wallpaper-nord-nixos-2.jpg".source = ../../assets/images/wallpaper-nord-nixos-2.jpg;
+    "wallpapers/wallpaper-wallhaven-moon.jpg".source = ../../assets/images/wallpaper-wallhaven-moon.jpg;
 
     # Taken from https://konfou.xyz/posts/nixos-without-display-manager/
     # in order to get rid off the display manager

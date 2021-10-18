@@ -1,5 +1,5 @@
-import           Control.Monad                       (liftM2)
-import           Data.Monoid                         (Endo)
+import           Control.Monad
+import           Data.Monoid
 import           Data.Tree
 import           Data.Ratio                          ((%))
 import qualified Data.Map                            as M
@@ -151,8 +151,8 @@ myConfig logHandle = defaultConfig {
   , startupHook = myAutostart
   , logHook     = myLogHook logHandle
   , layoutHook  = myLayout
-  , normalBorderColor = "#060814"
-  , focusedBorderColor = "#4a4c57"
+  , normalBorderColor = "#2e3440"
+  , focusedBorderColor = "#ddaacc"
 --   , layoutHook  = mySpacing $ smartBorders $ avoidStruts . mkToggle ( NBFULL ?? EOT) $ ResizableTall ||| Mirror ResizableTall
 --  , layoutHook  = mySpacing $ avoidStruts $ layoutHook defaultConfig
   , workspaces         = TS.toWorkspaces myWorkspaces
