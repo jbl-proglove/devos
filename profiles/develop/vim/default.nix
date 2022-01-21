@@ -14,7 +14,7 @@
             # see and learn https://github.com/jiangmiao/auto-pairs
             auto-pairs
             vim-colorschemes
-            indentLine
+            #  indentLine
           ];
           opt = [
             # see and learn https://github.com/elzr/vim-json
@@ -45,7 +45,8 @@
           autocmd FileType json :packadd vim-json
           " set correct yaml indentation (https://www.arthurkoziel.com/setting-up-vim-for-yaml/)
           autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-          let g:indentLine_char = '⦙'
+          " let g:indentLine_char = '⦙'
+          let g:vim_json_syntax_conceal = 0
           "
         '';
       };

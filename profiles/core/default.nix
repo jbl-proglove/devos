@@ -32,6 +32,7 @@ in
       nix-index
       nmap
       rage # see https://lib.rs/crates/rage
+      ranger
       ripgrep
       skim
       tealdeer

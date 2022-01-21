@@ -67,6 +67,12 @@
     fadeDelta = 3;
     opacityRules = [
       "100:name *= 'Microsoft Teams'"
+      "100:name *= 'Google Chrome'"
+      "100:class_g = 'qutebrowser'"
+      "100:class_g *= 'google-chrome'"
+      "100:class_g *= 'Firefox'"
+      "100:class_g = 'zoom'"
+      "100:class_g = 'Rofi'"
       "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
     ];
 

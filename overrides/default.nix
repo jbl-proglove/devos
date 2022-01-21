@@ -21,6 +21,7 @@
       qutebrowser
       signal-desktop
       starship
+      teams
       terraform
       vscode-extensions
       vscodium

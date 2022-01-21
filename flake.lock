@@ -302,7 +302,7 @@
         "rofi": "rofi"
       },
       "locked": {
-        "narHash": "sha256-aWSshLkwjyLqXbST9sDDEgB3QLkphsjDENbvzLfZ+N0=",
+        "narHash": "sha256-0O3LRxUwQqi68QqPYeKhjI7gj5sZ8AHzIYI83dl7jAA=",
         "path": "./pkgs",
         "type": "path"
       },

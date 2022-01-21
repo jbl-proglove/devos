@@ -89,7 +89,8 @@
     autorun = true;
     #exportConfiguration = true;
     #layout = "us";
-    layout = "us(intl)";
+    layout = "us,de";
+    xkbOptions = "grp:alt_shift_toggle";
     #    resolutions = [
     #      { x = 1920; y = 1080; }
     #      { x = 2560; y = 1440; }
@@ -98,17 +99,20 @@
     # Enable touchpad support.
     libinput.enable = true;
 
+    resolutions = [{ x = 1920; y = 1280; } { x = 2560; y = 2440; }];
+    #videoDrivers = [ "displaylink" "modesetting" ];
+    logFile = "/var/log/Xorg.0.log";
     # Disable desktop manager.
     #    desktopManager.default = "none";
 
     updateDbusEnvironment = true;
 
-    displayManager = {
-      #startx.enable = true;
-      defaultSession = "none+xmonad";
-      #
-      # Should be default, but I prefer explicit
-      lightdm.enable = true;
-    };
+    #displayManager = {
+    #startx.enable = true;
+    #defaultSession = "none+xmonad";
+    #
+    # Should be default, but I prefer explicit
+    #lightdm.enable = true;
+    #};
   };
 }

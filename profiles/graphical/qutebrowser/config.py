@@ -43,6 +43,8 @@ c.content.headers.do_not_track = True
 # set to `all` to get salesforce admin stuff to work
 c.content.cookies.accept = "all"
 
+c.content.persistent_storage = True
+
 c.content.canvas_reading = True
 
 c.content.dns_prefetch = True
@@ -100,6 +102,9 @@ c.content.print_element_backgrounds = True
 # Type: Bool
 c.content.private_browsing = False
 
+#
+c.content.blocking.whitelist = ['https://*.cloudfront.net/*', 'https://*.amazonaws.com/*']
+
 # Enable WebGL.
 # Type: Bool
 c.content.webgl = True
@@ -109,6 +114,13 @@ c.content.webgl = True
 # console. Enabling this feature might have an impact on performance.
 # Type: Bool
 c.content.xss_auditing = True
+
+c.editor.command = ['alacritty',  '-e', 'vim', '-c', 'normal {line}G{column0}l', '{file}']
+
+c.fileselect.folder.command = ['alacritty', '-e', 'ranger', '--choosedir={}']
+
+c.fileselect.single_file.command = ['alacritty', '-e', 'ranger', '--choosefile={}']
+c.fileselect.multiple_files.command = ['alacritty', '-e', 'ranger', '--choosefiles={}']
 
 # What to display in the download filename input.
 # Type: String

@@ -19,7 +19,8 @@
       nixpkgs-fmt
       qutebrowser
       signal-desktop
-      starship;
+      starship
+      teams;
 
     #    haskellPackages = prev.haskellPackages.override {
     #      overrides = hfinal: hprev:

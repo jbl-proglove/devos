@@ -50,6 +50,7 @@
       #      pinentry
       #pinentry-curses
       #      gopass
+      gron
       ncdu
       lazygit
       less
@@ -57,6 +58,7 @@
       tokei
       terraform
       wget
+      xsv
     ];
   };
 
@@ -88,4 +90,12 @@
   programs.firejail.enable = true;
   programs.mtr.enable = true;
   programs.bash-my-aws.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    autoPrune = {
+      enable = true;
+      flags = [ "--all" ];
+      dates = "weekly";
+    };
+  };
 }
