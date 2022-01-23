@@ -158,7 +158,7 @@ in
         "dual-topdown-merian" = {
           fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_aoc; };
           config."HDMI1" = { enable = true; primary = true; position = "0x0"; mode = "2560x1440"; };
-          config."eDP1" = { enable = true; primary = false; position = "0x1440"; mode = "1920x1080"; };
+          config."eDP1" = { enable = true; primary = false; position = "640x1440"; mode = "1920x1080"; };
         };
         "dual-martina" = {
           fingerprint = { "eDP1" = fingerprint_internal; "HDMI1" = fingerprint_dell; };
